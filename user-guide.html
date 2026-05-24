@@ -114,4 +114,389 @@
     <li>Extracts comment/post text and optional public profile cues.</li>
     <li>Scores each item with two independent heuristics:
       <ul>
-        <li><strong>Troll-behavior risk</strong> 
+        <li><strong>Troll-behavior risk</strong> — hostile, baiting, repetitive, or inflammatory patterns.</li>
+        <li><strong>Fake-account risk</strong> — scam language, link spam, default avatars, thin profiles, etc.</li>
+      </ul>
+    </li>
+    <li>Annotates content with badges you can click for explanations.</li>
+  </ul>
+
+  <p>
+    Analysis is reactive: as new comments appear while you scroll, ThreadSense re-runs on visible content.
+    There is no background scraping of other pages.
+  </p>
+
+  <h3>What ThreadSense does not do</h3>
+  <ul>
+    <li>Hide, report, block, or reply to comments automatically.</li>
+    <li>Read private messages or anything you cannot already see on the page.</li>
+    <li>Store names, profile URLs, or comment text after you close the tab.</li>
+    <li>Judge political affiliation, protected traits, or mental health.</li>
+  </ul>
+
+  <h2>2. Quick start</h2>
+
+  <ol>
+    <li>Install ThreadSense from the Chrome Web Store or the tester link.</li>
+    <li>In Chrome, open <code>chrome://extensions</code> and make sure ThreadSense is enabled.</li>
+    <li>Go to <a href="https://www.facebook.com" target="_blank" rel="noopener">facebook.com</a>.</li>
+    <li>Scroll until you see posts with comments.</li>
+    <li>Look for <strong>ThreadSense badges</strong> next to comments and some posts.</li>
+    <li>Click a badge to open the explanation popover.</li>
+  </ol>
+
+  <p>If you see no badges at all, see <a href="#troubleshooting">Troubleshooting</a>.</p>
+
+  <h2>3. Badges, highlights, and popovers</h2>
+
+  <h3>Badge types</h3>
+  <ul>
+    <li>
+      <span class="badge">Risk badge</span> — shows enabled risk types and levels, e.g.
+      <code>Fake: Med (45) · Troll: High (72)</code>.
+    </li>
+    <li>
+      <span class="badge">No signals badge</span> — gray <code>No signals</code> when the “Tag every comment”
+      setting is on and nothing triggered.
+    </li>
+  </ul>
+
+  <h3>Score levels</h3>
+
+  <p>Each comment/post can have:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Range</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Low</td>
+        <td>0–39</td>
+        <td>Weak pattern; often harmless or ambiguous.</td>
+      </tr>
+      <tr>
+        <td>Medium</td>
+        <td>40–69</td>
+        <td>Stronger pattern; worth a closer look.</td>
+      </tr>
+      <tr>
+        <td>High</td>
+        <td>70–100</td>
+        <td>Many signals combined; be cautious and double-check.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The badge color and any left-border highlight use the higher of the two scores (troll or fake).</p>
+
+  <h3>Popover contents</h3>
+
+  <p>Click a badge to see:</p>
+  <ul>
+    <li>Troll and fake scores, each with Low/Medium/High labels.</li>
+    <li>Short bullet reasons (for example “hostile phrases”, “many links”, “default avatar + numeric URL”).</li>
+    <li>A disclaimer reminding you that these are heuristic estimates, not verdicts.</li>
+  </ul>
+
+  <h2>4. Toolbar popup</h2>
+
+  <p>Click the ThreadSense icon in the Chrome toolbar to open the popup.</p>
+
+  <h3>Tab stats</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Stat</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Scanned</td>
+        <td>Number of posts/comments analyzed on the active Facebook tab.</td>
+      </tr>
+      <tr>
+        <td>High / Medium / Low</td>
+        <td>How many items fell into each combined level band.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The popup shows “—” if the active tab is not a Facebook page with the extension running.</p>
+
+  <h3>Quick settings</h3>
+
+  <p>In the popup, you can toggle:</p>
+  <ul>
+    <li><strong>Enable on Facebook</strong> – turn ThreadSense on/off for Facebook.</li>
+    <li><strong>Show low signals</strong> – show or hide Low-level badges.</li>
+    <li><strong>Tag every comment</strong> – give every comment a badge (including “No signals”).</li>
+  </ul>
+
+  <p>Changes apply immediately to the current Facebook tab.</p>
+
+  <h2>5. Settings (options page)</h2>
+
+  <p>You can open the full settings page by:</p>
+  <ul>
+    <li>Clicking <strong>All settings</strong> in the toolbar popup, or</li>
+    <li>Going to Chrome’s extension list → ThreadSense → <strong>Extension options</strong>.</li>
+  </ul>
+
+  <h3>Key options</h3>
+
+  <ul>
+    <li><strong>Enable extension</strong> – master on/off switch for analysis.</li>
+    <li><strong>Show low-signal results</strong> – choose whether to show Low-level badges.</li>
+    <li><strong>Tag every comment</strong> – every analyzable comment gets a badge.</li>
+    <li><strong>Sensitivity</strong> – Low / Normal / High; higher sensitivity will flag more items but may increase false positives.</li>
+    <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
+    <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
+    <li><strong>Public profile context</strong> – optionally use visible profile cues (like default avatar or thin profiles) to slightly adjust fake risk. Data stays local and is not stored between sessions.</li>
+  </ul>
+
+  <p>You can reset to default settings at any time from the options page.</p>
+
+  <h2>6. Risk criteria and thresholds</h2>
+
+  <p>
+    ThreadSense uses a set of heuristic signals to estimate troll and fake-account risk. This section
+    explains what it looks for and roughly when a signal is considered active.
+  </p>
+
+  <h3>6.1 Troll‑behavior risk</h3>
+
+  <p><strong>Goal:</strong> approximate “Does this text and behavior on this page look hostile, baiting, or repetitive?”</p>
+
+  <ul>
+    <li>
+      <strong>Hostile / insulting phrases</strong><br>
+      Looks for clear insults or slurs (including some Tagalog/PH political insults). One strong term,
+      or several weaker ones in the same comment, can push this signal up. Rough weight: up to ~30 points.
+    </li>
+    <li>
+      <strong>Bait / antagonistic phrases</strong><br>
+      Challenge phrases and bait cues (e.g. “prove it”, “debate me”, etc.). One strong bait phrase or several
+      lighter ones can activate it. Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Excessive ALL CAPS</strong><br>
+      Treated as shouting when:
+      <ul>
+        <li>Text length is at least around 25 characters, and</li>
+        <li>A large majority (≈65%+) of letters or words are uppercase.</li>
+      </ul>
+      Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Repeated punctuation</strong><br>
+      Emphasis patterns like <code>!!!</code>, <code>???</code>, <code>?!?!</code> with at least 3 repeated characters.
+      Rough weight: up to ~10 points.
+    </li>
+    <li>
+      <strong>Near‑duplicate comments</strong><br>
+      Same author posting essentially the same text multiple times on one page (copy‑paste spam or repeated replies).
+      Needs at least 2 similar comments by the same author. Rough weight: up to ~20 points.
+    </li>
+    <li>
+      <strong>Author hostility frequency</strong><br>
+      Same author posting multiple hostile comments in the same thread/page. Kicks in when they have several visible
+      comments and about half or more are hostile. Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Condescension density</strong><br>
+      Several condescending phrases or a mix of condescension plus other hostile markers in one comment.
+      Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Short + hostile</strong><br>
+      Very short comments (around 3–8 words) that are mostly an insult or attack.
+      Rough weight: up to ~10 points.
+    </li>
+    <li>
+      <strong>Minimum content rule</strong><br>
+      A comment needs at least about 10 characters and 2 words before troll scoring runs.
+      Very short/unreadable content is skipped (may still get a neutral badge if you tag every comment).
+    </li>
+  </ul>
+
+  <h3>6.2 Fake‑account risk</h3>
+
+  <p><strong>Goal:</strong> approximate “Does this account + comment look like scam/spam/farm patterns?”</p>
+
+  <ul>
+    <li>
+      <strong>Scam / promotional language</strong><br>
+      Phrases used in scams or promos (e.g., “dm me for help”, “earn daily”, etc., tuned for your audience).
+      One or more strong phrases can push this signal high. Rough weight: up to ~35 points.
+    </li>
+    <li>
+      <strong>Link‑heavy comments</strong><br>
+      Comments that mainly push links (one or more URLs with high link density). Usually not applied to the original
+      post author. Rough weight: up to ~20 points.
+    </li>
+    <li>
+      <strong>Repeated link sharing</strong><br>
+      Same author posting link‑heavy comments at least twice on one page. Rough weight: up to ~20 points.
+    </li>
+    <li>
+      <strong>Suspicious name patterns</strong><br>
+      Display names that look auto‑generated or ID‑like (all digits, long digit suffixes, odd letter‑digit mixes).
+      Rough weight: ~6–20 points depending on strength.
+    </li>
+    <li>
+      <strong>Numeric‑only profile URL</strong><br>
+      Profile links like <code>profile.php?id=…</code> instead of a human vanity URL.
+      Rough weight: up to ~12 points.
+    </li>
+    <li>
+      <strong>Default profile photo</strong><br>
+      Account appears to use Facebook’s default gray silhouette avatar, based on avatar detection mode.
+      Rough weight: up to ~24 points.
+    </li>
+    <li>
+      <strong>Default avatar + numeric URL combo</strong><br>
+      When both a default-looking avatar and a numeric profile URL are detected, extra weight is added on top of each
+      individual signal (around +8 points).
+    </li>
+    <li>
+      <strong>Burst commenting</strong><br>
+      Same account posting many comments on the same page (around 5+ visible comments).
+      Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Generic / engagement‑farming content</strong><br>
+      Very short, generic replies (emojis only, “nice”, “wow”, etc.), especially when combined with links or repetition.
+      Rough weight: about 8–10 points.
+    </li>
+    <li>
+      <strong>Public profile context (weak, capped)</strong><br>
+      Optional profile-based hints (default avatar, very low friend/follower counts, “joined recently” etc.) when you
+      have profile context enabled. Combined profile signals can contribute up to around 35 points, but cannot by
+      themselves push someone to “High” risk.
+    </li>
+  </ul>
+
+  <h3>6.3 Avatar detection modes</h3>
+
+  <ul>
+    <li><strong>Strict</strong> – fewer “default photo” flags but may miss some silhouettes; requires clearer evidence.</li>
+    <li><strong>Aggressive</strong> – flags more suspected defaults but increases chance of false positives; inferred-only
+      detections may be down‑weighted or ignored.</li>
+  </ul>
+
+  <h3>6.4 Combining scores</h3>
+
+  <ul>
+    <li>Both troll and fake scores are calculated from 0–100.</li>
+    <li>A sensitivity multiplier applies:
+      <ul>
+        <li><strong>Low</strong> ≈ 0.75×</li>
+        <li><strong>Normal</strong> ≈ 1.1×</li>
+        <li><strong>High</strong> ≈ 1.35×</li>
+      </ul>
+      then scores are clamped to 0–100.
+    </li>
+    <li>Very small scores (below about 8) are suppressed to 0 to reduce noise.</li>
+    <li>The badge’s overall level uses the higher of (troll score, fake score).</li>
+    <li>Verified pages skip fake‑account scoring, and post authors may skip some fake patterns related to link repetition.</li>
+  </ul>
+
+  <h2>7. Privacy and data</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Stored?</th>
+        <th>Where</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Your settings (toggles, sensitivity, etc.)</td>
+        <td>Yes</td>
+        <td><code>chrome.storage.local</code> on your device</td>
+      </tr>
+      <tr>
+        <td>Comment/post text</td>
+        <td>No</td>
+        <td>Processed in memory only; discarded when the tab closes</td>
+      </tr>
+      <tr>
+        <td>Author fingerprints / duplicate detection</td>
+        <td>No</td>
+        <td>In memory per tab only</td>
+      </tr>
+      <tr>
+        <td>Profile hover cache</td>
+        <td>No</td>
+        <td>In memory per tab only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Permissions used:</p>
+  <ul>
+    <li><strong><code>storage</code></strong> – to keep your preferences.</li>
+    <li><strong>Host access for <code>facebook.com</code></strong> – to inject the analysis script on Facebook pages only.</li>
+  </ul>
+
+  <p class="muted">
+    For the full privacy policy, see the Privacy Policy link in the Chrome Web Store listing.
+  </p>
+
+  <h2 id="troubleshooting">8. Troubleshooting</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problem</th>
+        <th>Things to try</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>No badges at all</td>
+        <td>
+          Check that the extension is enabled in <code>chrome://extensions</code>.
+          Make sure you are on <code>facebook.com</code>. Reload the Facebook tab
+          (Ctrl+R / Cmd+R) after enabling.
+        </td>
+      </tr>
+      <tr>
+        <td>Popup shows “—” stats</td>
+        <td>The active tab must be a Facebook page with content loaded. Switch to a Facebook tab and wait a moment.</td>
+      </tr>
+      <tr>
+        <td>Too many things are flagged</td>
+        <td>Lower sensitivity to <strong>Low</strong>, turn off “Show low signals”, or disable one of the risk types.</td>
+      </tr>
+      <tr>
+        <td>Too few things are flagged</td>
+        <td>Raise sensitivity to <strong>High</strong>, enable both risk types, and enable public profile context.</td>
+      </tr>
+      <tr>
+        <td>Badges on the wrong element</td>
+        <td>This can happen when Facebook changes its layout. If you see this often, report it with a screenshot and page type (feed, group, etc.).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>9. Responsible use</h2>
+
+  <ul>
+    <li>Scores are approximate. Sarcasm, jokes, or quoted insults can be misread.</li>
+    <li>Real people can have default avatars or new accounts; “fake risk” is not proof.</li>
+    <li>Use ThreadSense to slow down, reconsider, and look more closely—not as a final judge of any person.</li>
+  </ul>
+
+  <p class="muted">
+    ThreadSense is not affiliated with Meta Platforms, Inc.
+  </p>
+</body>
+</html>
