@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ThreadSense for Facebook — User Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem 3rem;
+      line-height: 1.6;
+      color: #222;
+      background: #fafafa;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
+      margin-bottom: 0.25rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.25rem;
+    }
+    h3 {
+      margin-top: 1.25rem;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #f0f0f0;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #111;
+      color: #f5f5f5;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.4rem 0.5rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f1f1f1;
+      font-weight: 600;
+    }
+    .badge {
+      font-weight: 600;
+    }
+    .notice {
+      padding: 0.75rem 1rem;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 4px;
+      margin: 1rem 0;
+      font-size: 0.95em;
+    }
+    .muted {
+      color: #666;
+      font-size: 0.9em;
+    }
+    a {
+      color: #0b63ce;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>ThreadSense for Facebook — User Guide</h1>
+  <p><strong>Version 0.1.0</strong></p>
+
+  <p>
+    ThreadSense is a Chrome extension that analyzes posts and comments you can already see on Facebook
+    desktop and shows local heuristic risk estimates for troll-like behavior and fake-account patterns.
+    It runs entirely in your browser and does not send data to any server.
+  </p>
+
+  <div class="notice">
+    <strong>Important:</strong> ThreadSense never claims anyone is a troll, bot, or fake account.
+    Scores are pattern-based guesses and can be wrong. Use them as one input among many—not as proof.
+  </div>
+
+  <h2>1. What ThreadSense does</h2>
+
+  <p>While you browse Facebook (feed, posts, groups, etc.), ThreadSense:</p>
+  <ul>
+    <li>Finds visible posts and comments in the page.</li>
+    <li>Extracts comment/post text and optional public profile cues.</li>
+    <li>Scores each item with two independent heuristics:
+      <ul>
+        <li><strong>Troll-behavior risk</strong> — hostile, baiting, repetitive, or inflammatory patterns.</li>
+        <li><strong>Fake-account risk</strong> — scam language, link spam, default avatars, thin profiles, etc.</li>
+      </ul>
+    </li>
+    <li>Annotates content with badges you can click for explanations.</li>
+  </ul>
+
+  <p>
+    Analysis is reactive: as new comments appear while you scroll, ThreadSense re-runs on visible content.
+    There is no background scraping of other pages.
+  </p>
+
+  <h3>What ThreadSense does not do</h3>
+  <ul>
+    <li>Hide, report, block, or reply to comments automatically.</li>
+    <li>Read private messages or anything you cannot already see on the page.</li>
+    <li>Store names, profile URLs, or comment text after you close the tab.</li>
+    <li>Judge political affiliation, protected traits, or mental health.</li>
+  </ul>
+
+  <h2>2. Quick start</h2>
+
+  <ol>
+    <li>Install ThreadSense from the Chrome Web Store or the tester link.</li>
+    <li>In Chrome, open <code>chrome://extensions</code> and make sure ThreadSense is enabled.</li>
+    <li>Go to <a href="https://www.facebook.com" target="_blank" rel="noopener">facebook.com</a>.</li>
+    <li>Scroll until you see posts with comments.</li>
+    <li>Look for <strong>ThreadSense badges</strong> next to comments and some posts.</li>
+    <li>Click a badge to open the explanation popover.</li>
+  </ol>
+
+  <p>If you see no badges at all, see <a href="#troubleshooting">Troubleshooting</a>.</p>
+
+  <h2>3. Badges, highlights, and popovers</h2>
+
+  <h3>Badge types</h3>
+  <ul>
+    <li>
+      <span class="badge">Risk badge</span> — shows enabled risk types and levels, e.g.
+      <code>Fake: Med (45) · Troll: High (72)</code>.
+    </li>
+    <li>
+      <span class="badge">No signals badge</span> — gray <code>No signals</code> when the “Tag every comment”
+      setting is on and nothing triggered.
+    </li>
+  </ul>
+
+  <h3>Score levels</h3>
+
+  <p>Each comment/post can have:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Range</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Low</td>
+        <td>0–39</td>
+        <td>Weak pattern; often harmless or ambiguous.</td>
+      </tr>
+      <tr>
+        <td>Medium</td>
+        <td>40–69</td>
+        <td>Stronger pattern; worth a closer look.</td>
+      </tr>
+      <tr>
+        <td>High</td>
+        <td>70–100</td>
+        <td>Many signals combined; be cautious and double-check.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The badge color and any left-border highlight use the higher of the two scores (troll or fake).</p>
+
+  <h3>Popover contents</h3>
+
+  <p>Click a badge to see:</p>
+  <ul>
+    <li>Troll and fake scores, each with Low/Medium/High labels.</li>
+    <li>Short bullet reasons (for example “hostile phrases”, “many links”, “default avatar + numeric URL”).</li>
+    <li>A disclaimer reminding you that these are heuristic estimates, not verdicts.</li>
+  </ul>
+
+  <h2>4. Toolbar popup</h2>
+
+  <p>Click the ThreadSense icon in the Chrome toolbar to open the popup.</p>
+
+  <h3>Tab stats</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Stat</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Scanned</td>
+        <td>Number of posts/comments analyzed on the active Facebook tab.</td>
+      </tr>
+      <tr>
+        <td>High / Medium / Low</td>
+        <td>How many items fell into each combined level band.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The popup shows “—” if the active tab is not a Facebook page with the extension running.</p>
+
+  <h3>Quick settings</h3>
+
+  <p>In the popup, you can toggle:</p>
+  <ul>
+    <li><strong>Enable on Facebook</strong> – turn ThreadSense on/off for Facebook.</li>
+    <li><strong>Show low signals</strong> – show or hide Low-level badges.</li>
+    <li><strong>Tag every comment</strong> – give every comment a badge (including “No signals”).</li>
+  </ul>
+
+  <p>Changes apply immediately to the current Facebook tab.</p>
+
+  <h2>5. Settings (options page)</h2>
+
+  <p>You can open the full settings page by:</p>
+  <ul>
+    <li>Clicking <strong>All settings</strong> in the toolbar popup, or</li>
+    <li>Going to Chrome’s extension list → ThreadSense → <strong>Extension options</strong>.</li>
+  </ul>
+
+  <h3>Key options</h3>
+
+  <ul>
+    <li><strong>Enable extension</strong> – master on/off switch for analysis.</li>
+    <li><strong>Show low-signal results</strong> – choose whether to show Low-level badges.</li>
+    <li><strong>Tag every comment</strong> – every analyzable comment gets a badge.</li>
+    <li><strong>Sensitivity</strong> – Low / Normal / High; higher sensitivity will flag more items but may increase false positives.</li>
+    <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
+    <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
+    <li><strong>Public profile context</strong> – optionally use visible profile cues (like default avatar or thin profiles) to slightly adjust fake risk. Data stays local and is not stored between sessions.</li>
+  </ul>
+
+  <p>You can reset to default settings at any time from the options page.</p>
+
+  <h2>6. Privacy and data</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Stored?</th>
+        <th>Where</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Your settings (toggles, sensitivity, etc.)</td>
+        <td>Yes</td>
+        <td><code>chrome.storage.local</code> on your device</td>
+      </tr>
+      <tr>
+        <td>Comment/post text</td>
+        <td>No</td>
+        <td>Processed in memory only; discarded when the tab closes</td>
+      </tr>
+      <tr>
+        <td>Author fingerprints / duplicate detection</td>
+        <td>No</td>
+        <td>In memory per tab only</td>
+      </tr>
+      <tr>
+        <td>Profile hover cache</td>
+        <td>No</td>
+        <td>In memory per tab only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Permissions used:</p>
+  <ul>
+    <li><strong><code>storage</code></strong> – to keep your preferences.</li>
+    <li><strong>Host access for <code>facebook.com</code></strong> – to inject the analysis script on Facebook pages only.</li>
+  </ul>
+
+  <p class="muted">
+    For the full privacy policy, see the Privacy Policy link in the Chrome Web Store listing.
+  </p>
+
+  <h2 id="troubleshooting">7. Troubleshooting</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problem</th>
+        <th>Things to try</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>No badges at all</td>
+        <td>
+          Check that the extension is enabled in <code>chrome://extensions</code>.
+          Make sure you are on <code>facebook.com</code>. Reload the Facebook tab
+          (Ctrl+R / Cmd+R) after enabling.
+        </td>
+      </tr>
+      <tr>
+        <td>Popup shows “—” stats</td>
+        <td>The active tab must be a Facebook page with content loaded. Switch to a Facebook tab and wait a moment.</td>
+      </tr>
+      <tr>
+        <td>Too many things are flagged</td>
+        <td>Lower sensitivity to <strong>Low</strong>, turn off “Show low signals”, or disable one of the risk types.</td>
+      </tr>
+      <tr>
+        <td>Too few things are flagged</td>
+        <td>Raise sensitivity to <strong>High</strong>, enable both risk types, and enable public profile context.</td>
+      </tr>
+      <tr>
+        <td>Badges on the wrong element</td>
+        <td>This can happen when Facebook changes its layout. If you see this often, report it with a screenshot and page type (feed, group, etc.).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>8. Responsible use</h2>
+
+  <ul>
+    <li>Scores are approximate. Sarcasm, jokes, or quoted insults can be misread.</li>
+    <li>Real people can have default avatars or new accounts; “fake risk” is not proof.</li>
+    <li>Use ThreadSense to slow down, reconsider, and look more closely—not as a final judge of any person.</li>
+  </ul>
+
+  <p class="muted">
+    ThreadSense is not affiliated with Meta Platforms, Inc.
+  </p>
+</body>
+</html>
