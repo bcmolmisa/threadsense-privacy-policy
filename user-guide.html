@@ -297,6 +297,8 @@
     <li><strong>Enable extension</strong> – master on/off switch for analysis.</li>
     <li><strong>Show low-signal results</strong> – choose whether to show Low-level badges.</li>
     <li><strong>Tag every comment</strong> – every analyzable comment gets a badge.</li>
+    <li><strong>Thread warnings</strong> – optional pile-on notice on a comment, or high-risk thread notice on the post when several accounts already show medium+ risk (informational only; does not change scores).</li>
+    <li><strong>Philippines context</strong> – when on, “unusual local hours” fake signals may apply using your PC clock; turn off if you browse from another timezone. PH talking-point phrases always stay active and merge with <a href="https://threadsense.org/phrase-lists.json">threadsense.org/phrase-lists.json</a>.</li>
     <li><strong>Sensitivity</strong> – Low / Normal / High; higher sensitivity will flag more items but may increase false positives.</li>
     <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
     <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
@@ -316,8 +318,9 @@
   <h3>6.0 Word matching</h3>
 
   <p>
-    ThreadSense compares comment text to three word lists—<strong>hostile</strong> insults,
-    <strong>bait</strong> / debate-bait wording, and <strong>scam</strong> / promo language. Lists load
+    ThreadSense compares comment text to word lists—<strong>hostile</strong> insults,
+    <strong>bait</strong> / debate-bait wording, <strong>scam</strong> / promo language, and
+    <strong>talking-point</strong> narrative templates (Philippines-focused pack). Lists load
     automatically when the extension runs; there is nothing to configure in Settings.
   </p>
 
@@ -364,8 +367,18 @@
         <td>Scam pitches, unsolicited DMs, payment-app spam, work-from-home spam</td>
         <td>Curated scam and promotional patterns seen in comment spam.</td>
       </tr>
+      <tr>
+        <td>Talking points</td>
+        <td>Repeated political or coordinated narrative phrases</td>
+        <td>Philippines-focused starter pack; merged with remote list updates like other categories.</td>
+      </tr>
     </tbody>
   </table>
+
+  <p>
+    <strong>High risk (70+)</strong> on either axis requires at least one strong text anchor (hostile, bait, scam,
+    or talking-point match). Weak signals alone—default avatar, numeric profile URL, burst volume—are capped below High.
+  </p>
 
   <p class="muted">
     The checker is a best-effort tool: it can flag something by mistake, miss unusual wording, or overlook
