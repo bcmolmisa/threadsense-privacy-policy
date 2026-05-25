@@ -284,19 +284,8 @@
     <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
     <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
     <li><strong>Public profile context</strong> – optionally use visible profile cues (friend/follower counts, join date, default avatar on Facebook’s preview card) to slightly adjust fake risk. Hover the person’s profile photo or name on the feed to load that preview and refresh their badges—see <a href="#profile-hover">Refreshing badges by hovering a profile photo or name</a>. Data stays on your device only and is not stored between sessions.</li>
-    <li><strong>Use phrase list from GitHub</strong> – merge extra phrases from public <code>phrase-lists.json</code> on top of the built-in lists (see <a href="#phrase-lists-settings">Phrase lists</a>).</li>
-    <li><strong>Custom list URL</strong> – optional HTTPS link to your own JSON file with the same shape.</li>
+    <li><strong>Debug mode</strong> – logs scan results to the browser console (for development only).</li>
   </ul>
-
-  <h3 id="phrase-lists-settings">Phrase lists (editable on GitHub)</h3>
-
-  <p>
-    Open <strong>Settings → Phrase lists</strong>. The built-in lists always apply. To add more words via GitHub,
-    edit
-    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json">phrase-lists.json</a>
-    (only new phrases, or the full list plus extras—duplicates are ignored), commit and push, then tap
-    <strong>Refresh phrase list now</strong>.
-  </p>
 
   <p>You can reset to default settings at any time from the options page.</p>
 
@@ -307,55 +296,49 @@
     explains what it looks for and roughly when a signal is considered active.
   </p>
 
-  <h3>6.0 Phrase lists (where the “database” comes from)</h3>
+  <h3>6.0 Word matching (built-in lists)</h3>
 
   <p>
-    ThreadSense always uses the <strong>original built-in</strong> insult, bait, and scam lists shipped inside
-    the extension. Optionally, it also loads
-    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json">phrase-lists.json</a>
-    from your public GitHub repo and <strong>adds</strong> those phrases on top (nothing from the built-in list is
-    removed). See <strong>Settings → Phrase lists</strong>. If a comment trips a warning, the popover can show the
-    actual words it noticed—in quotes—under that reason.
+    ThreadSense compares comment text to three <strong>built-in</strong> word lists bundled with the extension:
+    hostile insults, debate-bait wording, and scam/promo language. There is nothing to configure—lists load
+    automatically when the extension runs. When a comment matches, the popover can show the actual matched
+    words in quotes under that reason.
   </p>
 
   <table>
     <thead>
       <tr>
-        <th>List</th>
-        <th>Purpose</th>
-        <th>Main sources</th>
+        <th>Category</th>
+        <th>What it catches</th>
+        <th>How it was built</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code>HOSTILE_TERMS</code></td>
-        <td>Insults, slurs, dismissive/hostile language</td>
+        <td>Hostile / insulting</td>
+        <td>Insults, slurs, dismissive or hostile language</td>
         <td>
-          Curated English terms; profanity/slurs informed by
-          <a href="https://github.com/dariusk/wordfilter">dariusk/wordfilter</a> and LDNOOBW;
-          Tagalog profanity from
-          <a href="https://github.com/jromest/filipino-badwords-list">filipino-badwords-list</a> (MIT);
-          extended PH insults cross-referenced with hate-speech research (Cabasag 2019, Cruz 2020);
-          PH political discourse terms cross-referenced with Ong &amp; Cabañes (2018).
+          Curated English terms; profanity and slurs informed by open word-filter projects;
+          Tagalog profanity and extended PH insults from public badword lists and hate-speech research;
+          PH political discourse terms cross-referenced with academic sources.
         </td>
       </tr>
       <tr>
-        <td><code>BAIT_PHRASES</code></td>
+        <td>Bait / antagonistic</td>
         <td>Debate-bait, challenges, bad-faith questions</td>
-        <td>Curated English + Tagalog/PH patterns observed on Facebook comments.</td>
+        <td>Curated English and Tagalog/PH patterns common on Facebook comments.</td>
       </tr>
       <tr>
-        <td><code>SCAM_PHRASES</code></td>
-        <td>Scam, promo, DM/GCash, work-from-home spam</td>
-        <td>Curated English + Tagalog patterns common in comment scams.</td>
+        <td>Scam / promo</td>
+        <td>Scam pitches, DM/GCash, work-from-home spam</td>
+        <td>Curated English and Tagalog patterns seen in comment scams.</td>
       </tr>
     </tbody>
   </table>
 
   <p class="muted">
-    With <strong>Use phrase list from GitHub</strong> enabled, lists refresh every few hours or when you tap
-    <strong>Refresh phrase list now</strong> in settings. The checker is a best-effort tool: it can flag
-    something by mistake, miss unusual wording, or overlook insults not on the list yet.
+    The checker is a best-effort tool: it can flag something by mistake, miss unusual wording, or overlook
+    insults not in the built-in lists yet. Updating the extension is how word lists change.
   </p>
 
   <h3>6.1 Troll‑behavior risk</h3>
