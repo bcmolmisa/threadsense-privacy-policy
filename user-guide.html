@@ -93,7 +93,7 @@
 </head>
 <body>
   <h1>ThreadSense for Facebook — User Guide</h1>
-  <p><strong>Version 0.1.0</strong></p>
+  <p><strong>Version 0.1.1</strong></p>
 
   <p>
     ThreadSense is a Chrome extension that analyzes posts and comments you can already see on Facebook
@@ -615,6 +615,17 @@
           comment text. If the preview never appears, ThreadSense has nothing new to use.
         </td>
       </tr>
+      <tr>
+        <td>Wrong flags, stale badges, or odd scores after a settings change</td>
+        <td>
+          Do a <strong>hard refresh</strong> on the Facebook tab so the page and extension state resync:
+          <strong>Ctrl+Shift+R</strong> (Windows/Linux) or <strong>Cmd+Shift+R</strong> (Mac).
+          If problems continue, open <code>chrome://extensions</code>, click <strong>Reload</strong> on
+          ThreadSense, then hard-refresh Facebook again and scroll the feed so comments are re-scanned.
+          False positives can also come from sensitivity, PH talking-point phrases, or browsing outside
+          the Philippines with <strong>Philippines context</strong> still on—adjust those before assuming a bug.
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -678,8 +689,67 @@
     Facebook’s menus and labels change when the site is updated. For official help, search Meta’s Help Center on facebook.com for “report a profile” or “report a comment.”
   </p>
 
+  <h2 id="upcoming-revision">Upcoming revision — recent criteria and features</h2>
+
+  <h3>Scoring safeguards</h3>
+  <ul>
+    <li><strong>High (70+)</strong> needs a <strong>strong anchor</strong> (hostile/scam text, PH talking-point match, hostile duplicate, or bait+insult bundle)—not profile or volume alone.</li>
+    <li>Weak signals alone (default photo, numeric ID, burst activity, etc.) are <strong>capped near Medium</strong> without a strong anchor.</li>
+    <li>Other risky commenters on the same post <strong>do not add points</strong> to your score; thread context is a banner only.</li>
+  </ul>
+
+  <h3>New troll-behavior criteria</h3>
+  <table>
+    <thead><tr><th>Criterion</th><th>Triggers when</th></tr></thead>
+    <tbody>
+      <tr><td>Multi-target hostility</td><td>Same author has hostile replies under two or more different parent comments on the page.</td></tr>
+      <tr><td>Off-topic reply</td><td>Reply barely overlaps the parent topic and includes links or hostile language.</td></tr>
+      <tr><td>Cross-thread copy-paste</td><td>Near-identical comment reused across multiple posts in one session.</td></tr>
+      <tr><td>Trigram repetition</td><td>Same short phrase chunk repeated in several comments by one author.</td></tr>
+      <tr><td>Bait + insult bundles</td><td>Predefined bait+hostile term combos in one comment.</td></tr>
+      <tr><td>PH talking points</td><td>Matches bundled (and remote-merged) narrative templates.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>New fake-account criteria</h3>
+  <table>
+    <thead><tr><th>Criterion</th><th>Triggers when</th></tr></thead>
+    <tbody>
+      <tr><td>Timed burst</td><td>Several comments from same author within ~10 minutes on the page.</td></tr>
+      <tr><td>Off-topic link reply</td><td>Link in reply with little connection to parent comment.</td></tr>
+      <tr><td>Cross-thread promo copy</td><td>Same link-heavy promo pasted on multiple threads.</td></tr>
+      <tr><td>Low visible reactions</td><td>Many comments but very low visible reactions (when DOM shows counts).</td></tr>
+      <tr><td>Unusual local hours</td><td>Your PC clock is 2–5 a.m. and comment is recent—only if <strong>Philippines context</strong> is on.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>New settings</h3>
+  <ul>
+    <li><strong>I browse in Philippines context</strong> (default on) — gates off-hours fake signal; talking points always stay on. Turn off abroad.</li>
+    <li><strong>Thread warnings</strong> (default on) — pile-on and high-risk thread banners; never changes scores.</li>
+  </ul>
+
+  <h3>New thread notices (informational)</h3>
+  <table>
+    <thead><tr><th>Notice</th><th>Where</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td>Pile-on</td><td>Above a parent comment</td><td>Several accounts post hostile replies on that comment.</td></tr>
+      <tr><td>High-risk thread</td><td>Above the original post</td><td>Two or more accounts on the post already at Medium+ risk.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Bug reports</h3>
+  <p>
+    Popup <strong>Report a bug</strong> → download <code>threadsense-bug-report.txt</code> and screenshots;
+    share with the developer yourself. Optional mailto only if the publisher configured a support email in the build.
+  </p>
+
   <p class="muted">
     ThreadSense is not affiliated with Meta Platforms, Inc. This extension is not endorsed by Meta.
+  </p>
+
+  <p class="muted">
+    © 2026 Bernard Molmisa. All rights reserved.
   </p>
 </body>
 </html>
