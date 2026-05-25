@@ -268,6 +268,55 @@
     explains what it looks for and roughly when a signal is considered active.
   </p>
 
+  <h3>6.0 Phrase lists (where the “database” comes from)</h3>
+
+  <p>
+    ThreadSense does <strong>not</strong> look up words on the internet or use a separate online database.
+    The insults, bait lines, and scam phrases it checks for are built into the extension and update when
+    you install a newer version. If a comment trips a warning, the popover can show you the actual words
+    it noticed—in quotes—under that reason.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>List</th>
+        <th>Purpose</th>
+        <th>Main sources</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>HOSTILE_TERMS</code></td>
+        <td>Insults, slurs, dismissive/hostile language</td>
+        <td>
+          Curated English terms; profanity/slurs informed by
+          <a href="https://github.com/dariusk/wordfilter">dariusk/wordfilter</a> and LDNOOBW;
+          Tagalog profanity from
+          <a href="https://github.com/jromest/filipino-badwords-list">filipino-badwords-list</a> (MIT);
+          extended PH insults cross-referenced with hate-speech research (Cabasag 2019, Cruz 2020);
+          PH political discourse terms cross-referenced with Ong &amp; Cabañes (2018).
+        </td>
+      </tr>
+      <tr>
+        <td><code>BAIT_PHRASES</code></td>
+        <td>Debate-bait, challenges, bad-faith questions</td>
+        <td>Curated English + Tagalog/PH patterns observed on Facebook comments.</td>
+      </tr>
+      <tr>
+        <td><code>SCAM_PHRASES</code></td>
+        <td>Scam, promo, DM/GCash, work-from-home spam</td>
+        <td>Curated English + Tagalog patterns common in comment scams.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="muted">
+    Word lists are refreshed when you install a newer version of the extension. The checker is a
+    best-effort tool: it can flag something by mistake, miss a nasty comment that uses unusual wording,
+    or overlook insults phrased in a way that is not on the list yet.
+  </p>
+
   <h3>6.1 Troll‑behavior risk</h3>
 
   <p><strong>Goal:</strong> approximate “Does this text and behavior on this page look hostile, baiting, or repetitive?”</p>
