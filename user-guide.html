@@ -314,7 +314,7 @@
     explains what it looks for and roughly when a signal is considered active.
   </p>
 
-  <h3>6.0 Word matching (bundled + public lists)</h3>
+  <h3>6.0 Word matching</h3>
 
   <p>
     ThreadSense compares comment text to three word lists—<strong>hostile</strong> insults,
@@ -323,20 +323,16 @@
   </p>
 
   <p>
-    Matching uses two sources merged together (built-in terms are never removed):
+    Terms ship with the extension and may receive additional entries from periodic background updates while
+    you use Facebook. New terms are merged on top of the built-in lists—existing bundled terms are never
+    removed. Updates typically run about every six hours.
   </p>
-  <ul>
-    <li>
-      <strong>Bundled lists</strong> — shipped inside the extension (<code>data/phrase-lists.json</code>).
-    </li>
-    <li>
-      <strong>Public add-on list</strong> — fetched from
-      <a href="https://raw.githubusercontent.com/bcmolmisa/threadsense-privacy-policy/main/phrase-lists.json" rel="noopener noreferrer">phrase-lists.json</a>
-      on GitHub (<a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json" rel="noopener noreferrer">view on GitHub</a>).
-      New terms from that file are added on top of the bundled lists. The extension refreshes this file in the
-      background about every six hours while you use Facebook.
-    </li>
-  </ul>
+
+  <p>
+    Matching is <strong>case-insensitive</strong> and uses word boundaries where possible. Lists cannot cover
+    every language or writing style on Facebook; comments in languages or scripts with little list coverage may
+    be under-detected, and wording in any language can still be missed if it is not in the lists yet.
+  </p>
 
   <p>
     When a comment matches, the popover can show the actual matched words in quotes under that reason.
@@ -355,30 +351,27 @@
         <td>Hostile / insulting</td>
         <td>Insults, slurs, dismissive or hostile language</td>
         <td>
-          Curated English terms; profanity and slurs informed by open word-filter projects;
-          Tagalog profanity and extended PH insults from public badword lists and hate-speech research;
-          PH political discourse terms cross-referenced with academic sources.
+          Curated insults and slurs from open word-filter projects, badword lists, and hate-speech research;
+          some political-discourse terms cross-referenced with academic sources where applicable.
         </td>
       </tr>
       <tr>
         <td>Bait / antagonistic</td>
         <td>Debate-bait, challenges, bad-faith questions</td>
-        <td>Curated English and Tagalog/PH patterns common on Facebook comments.</td>
+        <td>Curated challenge and bait patterns common in social-media comments.</td>
       </tr>
       <tr>
         <td>Scam / promo</td>
-        <td>Scam pitches, DM/GCash, work-from-home spam</td>
-        <td>Curated English and Tagalog patterns seen in comment scams.</td>
+        <td>Scam pitches, unsolicited DMs, payment-app spam, work-from-home spam</td>
+        <td>Curated scam and promotional patterns seen in comment spam.</td>
       </tr>
     </tbody>
   </table>
 
   <p class="muted">
     The checker is a best-effort tool: it can flag something by mistake, miss unusual wording, or overlook
-    insults not in the lists yet. Additional terms can appear when the public
-    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json" rel="noopener noreferrer">phrase-lists.json</a>
-    is updated (after the extension’s next background refresh). Reinstalling or updating the Chrome extension
-    updates the bundled copy shipped with the install.
+    insults not in the lists yet. Additional terms can appear after a background refresh or when you reinstall
+    or update the Chrome extension (which updates the lists shipped with the install).
   </p>
 
   <h3>6.1 Troll‑behavior risk</h3>
@@ -388,7 +381,7 @@
   <ul>
     <li>
       <strong>Hostile / insulting phrases</strong><br>
-      Looks for clear insults or slurs (including some Tagalog/PH political insults). One strong term,
+      Looks for clear insults or slurs from the hostile list. One strong term,
       or several weaker ones in the same comment, can push this signal up. Rough weight: up to ~30 points.
     </li>
     <li>
@@ -599,7 +592,7 @@
           This can happen when Facebook changes its layout. Use <strong>Report a bug</strong> in the toolbar popup
           (or Settings footer): capture a screenshot of the Facebook tab, describe feed vs group vs reel, and
           download the report to share with the developer (GitHub or email are optional).
-          ThreadSense does not upload screenshots for you—you attach them on the issue page.
+          ThreadSense does not upload screenshots for you—attach them when you share the report.
         </td>
       </tr>
       <tr>
@@ -634,8 +627,8 @@
 
   <p>
     Use reporting when you have <strong>high confidence</strong> and have <strong>double-checked</strong>—for example
-    repeated scam pitches, clear impersonation, or targeted harassment—not because a badge disagrees with you
-    politically or because ThreadSense flagged a joke or sarcasm.
+    repeated scam pitches, clear impersonation, or targeted harassment—not because you merely disagree with someone
+    or because ThreadSense flagged a joke or sarcasm.
   </p>
 
   <p>
@@ -645,7 +638,7 @@
 
   <h3>Report a profile (desktop, typical flow)</h3>
   <ol>
-    <li><strong>Pause and double-check.</strong> Re-read their comments and your own judgment. Confirm you are not reporting political disagreement or a misunderstanding.</li>
+    <li><strong>Pause and double-check.</strong> Re-read their comments and your own judgment. Confirm you are not reporting a disagreement or a misunderstanding.</li>
     <li><strong>Open their profile.</strong> Click the person’s <strong>name</strong> or <strong>profile picture</strong> from the comment or feed.</li>
     <li><strong>Open the profile menu.</strong> On their profile page, click <strong>⋯</strong> (three dots) below the cover photo, or choose <strong>Find support or report profile</strong> (wording may vary).</li>
     <li><strong>Start a report.</strong> Select <strong>Report profile</strong> (for a personal profile) or the equivalent for a Page.</li>
