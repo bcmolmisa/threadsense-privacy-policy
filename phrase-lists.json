@@ -3,6 +3,16 @@
   "updated": "2026-05-25",
   "description": "Public add-on phrase list for ThreadSense. Terms here are merged with the built-in lists shipped in the extension (nothing is removed). Edit hostile, bait, and scam arrays; commit and push to update extensions.",
   "hostile": [
+    "8080",
+    "kagagohan",
+    "buwaya",
+    "buaya",
+    "Dmonio",
+    "clown"
+    "demonyo",   
+    "cupal",  
+    "dutae",
+    "Satanas",
     "idiot",
     "moron",
     "stupid",
