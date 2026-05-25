@@ -296,13 +296,32 @@
     explains what it looks for and roughly when a signal is considered active.
   </p>
 
-  <h3>6.0 Word matching (built-in lists)</h3>
+  <h3>6.0 Word matching (bundled + public lists)</h3>
 
   <p>
-    ThreadSense compares comment text to three <strong>built-in</strong> word lists bundled with the extension:
-    hostile insults, debate-bait wording, and scam/promo language. There is nothing to configure—lists load
-    automatically when the extension runs. When a comment matches, the popover can show the actual matched
-    words in quotes under that reason.
+    ThreadSense compares comment text to three word lists—<strong>hostile</strong> insults,
+    <strong>bait</strong> / debate-bait wording, and <strong>scam</strong> / promo language. Lists load
+    automatically when the extension runs; there is nothing to configure in Settings.
+  </p>
+
+  <p>
+    Matching uses two sources merged together (built-in terms are never removed):
+  </p>
+  <ul>
+    <li>
+      <strong>Bundled lists</strong> — shipped inside the extension (<code>data/phrase-lists.json</code>).
+    </li>
+    <li>
+      <strong>Public add-on list</strong> — fetched from
+      <a href="https://raw.githubusercontent.com/bcmolmisa/threadsense-privacy-policy/main/phrase-lists.json" rel="noopener noreferrer">phrase-lists.json</a>
+      on GitHub (<a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json" rel="noopener noreferrer">view on GitHub</a>).
+      New terms from that file are added on top of the bundled lists. The extension refreshes this file in the
+      background about every six hours while you use Facebook.
+    </li>
+  </ul>
+
+  <p>
+    When a comment matches, the popover can show the actual matched words in quotes under that reason.
   </p>
 
   <table>
@@ -338,7 +357,10 @@
 
   <p class="muted">
     The checker is a best-effort tool: it can flag something by mistake, miss unusual wording, or overlook
-    insults not in the built-in lists yet. Updating the extension is how word lists change.
+    insults not in the lists yet. Additional terms can appear when the public
+    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json" rel="noopener noreferrer">phrase-lists.json</a>
+    is updated (after the extension’s next background refresh). Reinstalling or updating the Chrome extension
+    updates the bundled copy shipped with the install.
   </p>
 
   <h3>6.1 Troll‑behavior risk</h3>
