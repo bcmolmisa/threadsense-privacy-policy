@@ -199,8 +199,35 @@
   <ul>
     <li>Troll and fake scores, each with Low/Medium/High labels.</li>
     <li>Short bullet reasons (for example “hostile phrases”, “many links”, “default avatar + numeric URL”).</li>
+    <li>Matched words or phrases in quotes when the checker found specific text on that comment.</li>
     <li>A disclaimer reminding you that these are heuristic estimates, not verdicts.</li>
   </ul>
+
+  <h3 id="profile-hover">Refreshing badges by hovering a profile photo or name</h3>
+
+  <p>
+    The first time ThreadSense scores a comment, it may not yet know much about the person’s account—only
+    what is visible on the comment itself (name, link style, avatar in the thread). Extra clues such as
+    friend count, follower count, or “joined Facebook in …” often appear only when Facebook shows its
+    profile preview card.
+  </p>
+
+  <p><strong>To update risk flags for that person’s comments on the page:</strong></p>
+  <ol>
+    <li>In <strong>Settings</strong>, turn on <strong>Enable public profile context</strong> (recommended; on by default).</li>
+    <li>On Facebook, pause the mouse over the commenter’s <strong>profile picture</strong> or <strong>name</strong>
+      until Facebook’s preview popup appears (the small card with their photo and stats).</li>
+    <li>Wait a moment for the card to finish loading. ThreadSense reads only what is already visible there—nothing
+      is sent to a server and nothing is saved after you close the tab.</li>
+    <li>Badges on <strong>all of that person’s comments</strong> on the current page may change. The badge may
+      flash briefly with a blue outline so you can see it was updated.</li>
+  </ol>
+
+  <p>
+    This mainly adjusts <strong>fake-account risk</strong> (thin or new-looking profiles, default photo on the
+    preview, and similar weak signals). It does not re-read the comment text for troll scoring. If the preview
+    never opens or stays empty, badges will stay as they were.
+  </p>
 
   <h2>4. Toolbar popup</h2>
 
@@ -256,8 +283,20 @@
     <li><strong>Sensitivity</strong> – Low / Normal / High; higher sensitivity will flag more items but may increase false positives.</li>
     <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
     <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
-    <li><strong>Public profile context</strong> – optionally use visible profile cues (like default avatar or thin profiles) to slightly adjust fake risk. Data stays local and is not stored between sessions.</li>
+    <li><strong>Public profile context</strong> – optionally use visible profile cues (friend/follower counts, join date, default avatar on Facebook’s preview card) to slightly adjust fake risk. Hover the person’s profile photo or name on the feed to load that preview and refresh their badges—see <a href="#profile-hover">Refreshing badges by hovering a profile photo or name</a>. Data stays on your device only and is not stored between sessions.</li>
+    <li><strong>Use phrase list from GitHub</strong> – merge extra phrases from public <code>phrase-lists.json</code> on top of the built-in lists (see <a href="#phrase-lists-settings">Phrase lists</a>).</li>
+    <li><strong>Custom list URL</strong> – optional HTTPS link to your own JSON file with the same shape.</li>
   </ul>
+
+  <h3 id="phrase-lists-settings">Phrase lists (editable on GitHub)</h3>
+
+  <p>
+    Open <strong>Settings → Phrase lists</strong>. The built-in lists always apply. To add more words via GitHub,
+    edit
+    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json">phrase-lists.json</a>
+    (only new phrases, or the full list plus extras—duplicates are ignored), commit and push, then tap
+    <strong>Refresh phrase list now</strong>.
+  </p>
 
   <p>You can reset to default settings at any time from the options page.</p>
 
@@ -271,10 +310,12 @@
   <h3>6.0 Phrase lists (where the “database” comes from)</h3>
 
   <p>
-    ThreadSense does <strong>not</strong> look up words on the internet or use a separate online database.
-    The insults, bait lines, and scam phrases it checks for are built into the extension and update when
-    you install a newer version. If a comment trips a warning, the popover can show you the actual words
-    it noticed—in quotes—under that reason.
+    ThreadSense always uses the <strong>original built-in</strong> insult, bait, and scam lists shipped inside
+    the extension. Optionally, it also loads
+    <a href="https://github.com/bcmolmisa/threadsense-privacy-policy/blob/main/phrase-lists.json">phrase-lists.json</a>
+    from your public GitHub repo and <strong>adds</strong> those phrases on top (nothing from the built-in list is
+    removed). See <strong>Settings → Phrase lists</strong>. If a comment trips a warning, the popover can show the
+    actual words it noticed—in quotes—under that reason.
   </p>
 
   <table>
@@ -312,9 +353,9 @@
   </table>
 
   <p class="muted">
-    Word lists are refreshed when you install a newer version of the extension. The checker is a
-    best-effort tool: it can flag something by mistake, miss a nasty comment that uses unusual wording,
-    or overlook insults phrased in a way that is not on the list yet.
+    With <strong>Use phrase list from GitHub</strong> enabled, lists refresh every few hours or when you tap
+    <strong>Refresh phrase list now</strong> in settings. The checker is a best-effort tool: it can flag
+    something by mistake, miss unusual wording, or overlook insults not on the list yet.
   </p>
 
   <h3>6.1 Troll‑behavior risk</h3>
@@ -482,9 +523,9 @@
         <td>In memory per tab only</td>
       </tr>
       <tr>
-        <td>Profile hover cache</td>
+        <td>Profile preview (hover card) details</td>
         <td>No</td>
-        <td>In memory per tab only</td>
+        <td>Read only while the preview is open; kept in memory for the current Facebook tab, then discarded</td>
       </tr>
     </tbody>
   </table>
@@ -532,6 +573,14 @@
       <tr>
         <td>Badges on the wrong element</td>
         <td>This can happen when Facebook changes its layout. If you see this often, report it with a screenshot and page type (feed, group, etc.).</td>
+      </tr>
+      <tr>
+        <td>Fake risk did not change after I hovered a profile</td>
+        <td>
+          Confirm <strong>Enable public profile context</strong> is on. Hover the profile photo or name until
+          Facebook’s preview card fully loads. Only fake-account badges may change; troll scores come from
+          comment text. If the preview never appears, ThreadSense has nothing new to use.
+        </td>
       </tr>
     </tbody>
   </table>
