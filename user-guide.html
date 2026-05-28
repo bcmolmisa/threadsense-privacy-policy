@@ -122,10 +122,12 @@
   <ul>
     <li>Finds visible posts and comments in the page.</li>
     <li>Extracts comment/post text and optional public profile cues.</li>
-    <li>Scores each item with two independent heuristics:
+    <li>Scores each item with several independent heuristics:
       <ul>
-        <li><strong>Troll-behavior risk</strong> — hostile, baiting, repetitive, or inflammatory patterns.</li>
-        <li><strong>Fake-account risk</strong> — scam language, link spam, default avatars, thin profiles, etc.</li>
+        <li><strong>Rude tone</strong> — insults, shouting, condescension, and heated language.</li>
+        <li><strong>Troll pattern</strong> — repetition, multi-target hostility, copy-paste, and drive-by replies.</li>
+        <li><strong>Scam / bait</strong> — promotional scams, debate bait, coordinated talking points, and bait bundles.</li>
+        <li><strong>Fake-account risk</strong> — link spam, thin profiles, default avatars, burst activity, etc.</li>
       </ul>
     </li>
     <li>Annotates content with badges you can click for explanations.</li>
@@ -157,13 +159,23 @@
 
   <p>If you see no badges at all, see <a href="#troubleshooting">Troubleshooting</a>.</p>
 
+  <h2 id="display-tools">2a. Display, authors, and focus</h2>
+  <ul>
+    <li><strong>Soft-hide</strong> — dim or collapse Medium/High comments (Settings → Display).</li>
+    <li><strong>Author snooze</strong> — 24h / 7d / forever from the popover; list in Settings → Authors.</li>
+    <li><strong>Custom phrases</strong> — block/allow lines and optional regex; import/export JSON.</li>
+    <li><strong>Copy analysis</strong> — popover button and popup “Copy thread snapshot”.</li>
+    <li><strong>Thread heat</strong> — colored strip on busy posts when subthreads flare up.</li>
+    <li><strong>Focus guard</strong> — optional prompt to enable dim mode after many High comments.</li>
+  </ul>
+
   <h2>3. Badges, highlights, and popovers</h2>
 
   <h3>Badge types</h3>
   <ul>
     <li>
-      <span class="badge">Risk badge</span> — shows enabled risk types and levels, e.g.
-      <code>Fake: Med (45) · Troll: High (72)</code>.
+      <span class="badge">Risk badges</span> — separate colored pills per axis (orange Rude, purple Pattern,
+      teal Scam/Bait, blue Fake), each with its own Low/Med/High color.
     </li>
     <li>
       <span class="badge">No signals badge</span> — gray <code>No signals</code> when the “Tag every comment”
@@ -201,14 +213,18 @@
     </tbody>
   </table>
 
-  <p>The badge color and any left-border highlight use the higher of the two scores (troll or fake).</p>
+  <p>
+    The badge color and any left-border highlight use the <strong>highest</strong> score among rude, troll pattern,
+    scam/bait, fake-account rollup, and the combined troll rollup.
+  </p>
 
   <h3>Popover contents</h3>
 
   <p>Click a badge to see:</p>
   <ul>
-    <li>Troll and fake scores, each with Low/Medium/High labels.</li>
-    <li>Short bullet reasons (for example “hostile phrases”, “many links”, “default avatar + numeric URL”).</li>
+    <li>Separate score cards for <strong>Rude tone</strong>, <strong>Troll pattern</strong>, <strong>Scam / bait</strong>, and <strong>Fake account</strong> (when each is enabled).</li>
+    <li>A short interpretation when rude vs pattern signals point in different directions.</li>
+    <li>Reason lists under each axis (for example hostile phrases, scam wording, duplicate comments, default avatar).</li>
     <li>Matched words or phrases in quotes when the checker found specific text on that comment.</li>
     <li>A disclaimer reminding you that these are heuristic estimates, not verdicts.</li>
   </ul>
@@ -289,7 +305,7 @@
   </p>
   <p>
     Optional: <strong>Send via email</strong> opens your mail app with a pre-filled message to
-    <strong>bcmolmisa@gmail.com</strong> (attach downloaded images manually). Use <strong>Capture Facebook tab</strong>
+    <strong><a href="mailto:info@threadsense.org">info@threadsense.org</a></strong> (attach downloaded images manually). Use <strong>Capture Facebook tab</strong>
     on the bug or suggestion page to grab a Facebook tab in the same window even when the form is open—ThreadSense
     captures that tab directly, not whatever tab is visible on screen. Nothing is uploaded to ThreadSense automatically.
   </p>
@@ -397,20 +413,15 @@
     or update the Chrome extension (which updates the lists shipped with the install).
   </p>
 
-  <h3>6.1 Troll‑behavior risk</h3>
+  <h3>6.1 Rude tone</h3>
 
-  <p><strong>Goal:</strong> approximate “Does this text and behavior on this page look hostile, baiting, or repetitive?”</p>
+  <p><strong>Goal:</strong> approximate “Does this comment sound hostile, insulting, or needlessly aggressive?”</p>
 
   <ul>
     <li>
       <strong>Hostile / insulting phrases</strong><br>
       Looks for clear insults or slurs from the hostile list. One strong term,
       or several weaker ones in the same comment, can push this signal up. Rough weight: up to ~30 points.
-    </li>
-    <li>
-      <strong>Bait / antagonistic phrases</strong><br>
-      Challenge phrases and bait cues (e.g. “prove it”, “debate me”, etc.). One strong bait phrase or several
-      lighter ones can activate it. Rough weight: up to ~15 points.
     </li>
     <li>
       <strong>Excessive ALL CAPS</strong><br>
@@ -427,16 +438,6 @@
       Rough weight: up to ~10 points.
     </li>
     <li>
-      <strong>Near‑duplicate comments</strong><br>
-      Same author posting essentially the same text multiple times on one page (copy‑paste spam or repeated replies).
-      Needs at least 2 similar comments by the same author. Rough weight: up to ~20 points.
-    </li>
-    <li>
-      <strong>Author hostility frequency</strong><br>
-      Same author posting multiple hostile comments in the same thread/page. Kicks in when they have several visible
-      comments and about half or more are hostile. Rough weight: up to ~15 points.
-    </li>
-    <li>
       <strong>Condescension density</strong><br>
       Several condescending phrases or a mix of condescension plus other hostile markers in one comment.
       Rough weight: up to ~15 points.
@@ -448,21 +449,77 @@
     </li>
     <li>
       <strong>Minimum content rule</strong><br>
-      A comment needs at least about 10 characters and 2 words before troll scoring runs.
+      A comment needs at least about 10 characters and 2 words before scoring runs.
       Very short/unreadable content is skipped (may still get a neutral badge if you tag every comment).
     </li>
   </ul>
 
-  <h3>6.2 Fake‑account risk</h3>
+  <h3>6.2 Troll behavior pattern</h3>
 
-  <p><strong>Goal:</strong> approximate “Does this account + comment look like scam/spam/farm patterns?”</p>
+  <p><strong>Goal:</strong> approximate “Does this author’s behavior on this page look repetitive, targeted, or disruptive?”</p>
+
+  <ul>
+    <li>
+      <strong>Near‑duplicate comments</strong><br>
+      Same author posting essentially the same text multiple times on one page. Needs at least 2 similar comments.
+      Rough weight: up to ~20 points.
+    </li>
+    <li>
+      <strong>Multi‑target hostility</strong><br>
+      Hostile replies under two or more different parent comments on the same page. Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Cross‑thread copy‑paste</strong><br>
+      Near‑identical comment reused across multiple posts in one browsing session. Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Off‑topic reply</strong><br>
+      Reply with little keyword overlap vs the parent comment, especially with links. Rough weight: up to ~12 points.
+    </li>
+    <li>
+      <strong>Scripted trigram repetition</strong><br>
+      Same short phrase chunk repeated across several comments by one author. Rough weight: up to ~12 points.
+    </li>
+  </ul>
+
+  <p>
+    The combined <strong>troll‑behavior rollup</strong> blends rude tone and troll pattern (the higher score plus a
+    fraction of the lower). Badges can show both sub‑scores separately.
+  </p>
+
+  <h3>6.3 Scam / bait risk</h3>
+
+  <p><strong>Goal:</strong> approximate “Is this comment trying to scam, promote, or bait people into a fight?”</p>
 
   <ul>
     <li>
       <strong>Scam / promotional language</strong><br>
-      Phrases used in scams or promos (e.g., “dm me for help”, “earn daily”, etc., tuned for your audience).
-      One or more strong phrases can push this signal high. Rough weight: up to ~35 points.
+      Phrases used in scams or promos (e.g., “dm me”, “earn daily”, GCash pitches). One strong phrase can anchor High risk.
+      Rough weight: up to ~35 points.
     </li>
+    <li>
+      <strong>Bait / antagonistic phrases</strong><br>
+      Challenge and debate‑bait wording (e.g. “prove it”, “debate me”). Rough weight: up to ~15 points.
+    </li>
+    <li>
+      <strong>Talking points (PH pack)</strong><br>
+      Curated coordinated narrative phrases; one match or several stacked matches. Rough weight: ~18–25 points.
+    </li>
+    <li>
+      <strong>Bait + insult bundles</strong><br>
+      Predefined hostile+bait term combinations in one comment. Rough weight: up to ~10 points.
+    </li>
+    <li>
+      <strong>Short + bait</strong><br>
+      Very short comments (about 3–8 words) that are mostly baiting. Rough weight: up to ~8 points.
+    </li>
+  </ul>
+
+  <h3>6.4 Fake‑account risk</h3>
+
+  <p><strong>Goal:</strong> approximate “Does this account + comment look like spam/farm/bot patterns?” (not scam wording alone)</p>
+
+  <ul>
     <li>
       <strong>Link‑heavy comments</strong><br>
       Comments that mainly push links (one or more URLs with high link density). Usually not applied to the original
@@ -699,63 +756,6 @@
 
   <p class="muted">
     Facebook’s menus and labels change when the site is updated. For official help, search Meta’s Help Center on facebook.com for “report a profile” or “report a comment.”
-  </p>
-
-  <h2 id="upcoming-revision">Upcoming revision — recent criteria and features</h2>
-
-  <h3>Scoring safeguards</h3>
-  <ul>
-    <li><strong>High (70+)</strong> needs a <strong>strong anchor</strong> (hostile/scam text, PH talking-point match, hostile duplicate, or bait+insult bundle)—not profile or volume alone.</li>
-    <li>Weak signals alone (default photo, numeric ID, burst activity, etc.) are <strong>capped near Medium</strong> without a strong anchor.</li>
-    <li>Other risky commenters on the same post <strong>do not add points</strong> to your score; thread context is a banner only.</li>
-  </ul>
-
-  <h3>New troll-behavior criteria</h3>
-  <table>
-    <thead><tr><th>Criterion</th><th>Triggers when</th></tr></thead>
-    <tbody>
-      <tr><td>Multi-target hostility</td><td>Same author has hostile replies under two or more different parent comments on the page.</td></tr>
-      <tr><td>Off-topic reply</td><td>Reply barely overlaps the parent topic and includes links or hostile language.</td></tr>
-      <tr><td>Cross-thread copy-paste</td><td>Near-identical comment reused across multiple posts in one session.</td></tr>
-      <tr><td>Trigram repetition</td><td>Same short phrase chunk repeated in several comments by one author.</td></tr>
-      <tr><td>Bait + insult bundles</td><td>Predefined bait+hostile term combos in one comment.</td></tr>
-      <tr><td>PH talking points</td><td>Matches bundled (and remote-merged) narrative templates.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>New fake-account criteria</h3>
-  <table>
-    <thead><tr><th>Criterion</th><th>Triggers when</th></tr></thead>
-    <tbody>
-      <tr><td>Timed burst</td><td>Several comments from same author within ~10 minutes on the page.</td></tr>
-      <tr><td>Off-topic link reply</td><td>Link in reply with little connection to parent comment.</td></tr>
-      <tr><td>Cross-thread promo copy</td><td>Same link-heavy promo pasted on multiple threads.</td></tr>
-      <tr><td>Low visible reactions</td><td>Many comments but very low visible reactions (when DOM shows counts).</td></tr>
-      <tr><td>Unusual local hours</td><td>Your PC clock is 2–5 a.m. and comment is recent—only if <strong>Philippines context</strong> is on.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>New settings</h3>
-  <ul>
-    <li><strong>I browse in Philippines context</strong> (default on) — gates off-hours fake signal; talking points always stay on. Turn off abroad.</li>
-    <li><strong>Thread warnings</strong> (default on) — pile-on and high-risk thread banners; never changes scores.</li>
-  </ul>
-
-  <h3>New thread notices (informational)</h3>
-  <table>
-    <thead><tr><th>Notice</th><th>Where</th><th>When</th></tr></thead>
-    <tbody>
-      <tr><td>Pile-on</td><td>Above a parent comment</td><td>Several accounts post hostile replies on that comment.</td></tr>
-      <tr><td>High-risk thread</td><td>Above the original post</td><td>Two or more accounts on the post already at Medium+ risk.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Bug reports and suggestions</h3>
-  <p>
-    Popup <strong>Report a bug</strong> or <strong>Send suggestion</strong> (also on the options page) → download
-    <code>threadsense-bug-report.txt</code> or <code>threadsense-suggestion.txt</code> and optional screenshots;
-    share with the developer yourself. <strong>Send via email</strong> uses mailto to
-    <strong>bcmolmisa@gmail.com</strong> with a pre-filled subject and body (your mail app sends the message).
   </p>
 
   <p class="muted">
