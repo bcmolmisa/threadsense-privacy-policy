@@ -103,7 +103,7 @@
     <a href="https://threadsense.org/">Privacy policy</a>
   </nav>
   <h1>ThreadSense for Facebook — User Guide</h1>
-  <p><strong>Version 0.1.1</strong></p>
+  <p><strong>Version 0.1.2</strong></p>
 
   <p>
     ThreadSense is a Chrome extension that analyzes posts and comments you can already see on Facebook
@@ -318,22 +318,96 @@
     <li>Going to Chrome’s extension list → ThreadSense → <strong>Extension options</strong>.</li>
   </ul>
 
-  <h3>Key options</h3>
+  <h3>How to use every setting</h3>
 
+  <h4>General</h4>
   <ul>
-    <li><strong>Enable extension</strong> – master on/off switch for analysis.</li>
-    <li><strong>Show low-signal results</strong> – choose whether to show Low-level badges.</li>
-    <li><strong>Tag every comment</strong> – every analyzable comment gets a badge.</li>
-    <li><strong>Thread warnings</strong> – optional pile-on notice on a comment, or high-risk thread notice on the post when several accounts already show medium+ risk (informational only; does not change scores).</li>
-    <li><strong>Philippines context</strong> – when on, “unusual local hours” fake signals may apply using your PC clock; turn off if you browse from another timezone. PH talking-point phrases always stay active and merge with <a href="https://threadsense.org/phrase-lists.json">threadsense.org/phrase-lists.json</a>.</li>
-    <li><strong>Sensitivity</strong> – Low / Normal / High; higher sensitivity will flag more items but may increase false positives.</li>
-    <li><strong>Fake-account risk</strong> – turn fake-pattern scoring on/off.</li>
-    <li><strong>Troll-behavior risk</strong> – turn troll-pattern scoring on/off.</li>
-    <li><strong>Public profile context</strong> – optionally use visible profile cues (friend/follower counts, join date, default avatar on Facebook’s preview card) to slightly adjust fake risk. Hover the person’s profile photo or name on the feed to load that preview and refresh their badges—see <a href="#profile-hover">Refreshing badges by hovering a profile photo or name</a>. Data stays on your device only and is not stored between sessions.</li>
-    <li><strong>Debug mode</strong> – logs scan results to the browser console (for development only).</li>
+    <li><strong>Enable extension</strong> — master switch. Turn off if you want to browse Facebook without any ThreadSense analysis.</li>
+    <li><strong>Show low-signal results</strong> — when off, Low items are hidden so you can focus on Medium/High comments only.</li>
+    <li><strong>Tag every comment with a status badge</strong> — adds a badge to almost everything (including “No signals”). Turn on for auditing; turn off for a cleaner feed.</li>
+    <li><strong>Pile-on thread warnings</strong> — shows informational notices for pile-ons and heated posts. It does not add points to any score.</li>
+    <li><strong>I browse in Philippines context</strong> — keeps Philippines-specific timing and talking-point logic aligned with local browsing. Turn off when traveling in another timezone to reduce false positives from local-hour signals.</li>
   </ul>
 
-  <p>You can reset to default settings at any time from the options page.</p>
+  <h4>Sensitivity</h4>
+  <ul>
+    <li><strong>Low</strong> — fewer alerts, stricter thresholds, best when you want fewer false alarms.</li>
+    <li><strong>Normal</strong> — recommended default for everyday use.</li>
+    <li><strong>High</strong> — catches more risky patterns, but may increase false positives.</li>
+  </ul>
+
+  <h4>Display</h4>
+  <ul>
+    <li><strong>Soft-hide: Off</strong> — show badges only; nothing is dimmed/collapsed.</li>
+    <li><strong>Soft-hide: Dim</strong> — lowers opacity for Medium+ comments.</li>
+    <li><strong>Soft-hide: Collapse High</strong> — hides only High until you expand manually.</li>
+    <li><strong>Soft-hide: Collapse Medium and High</strong> — most aggressive cleanup mode.</li>
+  </ul>
+  <p>Tip: start with <strong>Dim</strong> first. Move to collapse modes only if your feed is still noisy.</p>
+
+  <h4>Authors</h4>
+  <ul>
+    <li>Use badge popover buttons to snooze a person for <strong>24h</strong>, <strong>7d</strong>, or <strong>always</strong>.</li>
+    <li>The <strong>Authors</strong> section lists snoozed accounts for the current device profile.</li>
+    <li><strong>Clear all snoozes</strong> removes every saved snooze immediately.</li>
+  </ul>
+
+  <h4>Custom phrases</h4>
+  <ul>
+    <li><strong>Block phrases (boost risk)</strong> — one phrase per line; best for recurring spam lines or insults in your language mix.</li>
+    <li><strong>Allow phrases</strong> — phrases that should reduce over-triggering for known benign wording.</li>
+    <li><strong>Block regex</strong> — advanced matching for pattern-heavy spam (for example repeated prefixes or token formats).</li>
+    <li><strong>Export JSON / Import JSON</strong> — back up or move your phrase setup between browsers/devices.</li>
+  </ul>
+  <p>Best practice: add a few high-confidence phrases first, test for a day, then refine.</p>
+
+  <h4>Focus guard</h4>
+  <ul>
+    <li><strong>Doomscroll / heated-thread guard</strong> — prompts you to enable dim mode after repeated exposure to High-risk comments.</li>
+    <li><strong>High-risk comments before prompt</strong> — lower value = earlier prompt; higher value = fewer interruptions.</li>
+    <li><strong>Minutes on page before prompt</strong> — minimum dwell time before a prompt can appear.</li>
+  </ul>
+
+  <h4>Phrase lists</h4>
+  <ul>
+    <li><strong>Phrase list info</strong> shows current list counts and update state.</li>
+    <li><strong>Refresh remote phrase lists</strong> fetches latest published list updates.</li>
+  </ul>
+  <p>Remote updates add new terms on top of bundled lists and do not remove your custom phrases.</p>
+
+  <h4>Image / meme comments</h4>
+  <ul>
+    <li><strong>Analyze image comments</strong> — includes image-based comments in scoring using available alt text.</li>
+    <li><strong>Weak score for image-only replies in heated threads</strong> — adds cautious pattern weight when image-only drops appear in already heated discussions.</li>
+    <li><strong>Experimental local OCR on images</strong> — reads text from image pixels locally using Tesseract; can be slower on large images.</li>
+  </ul>
+
+  <h4>Risk Scoring switches</h4>
+  <ul>
+    <li><strong>Fake-account risk scoring</strong> — account/behavior signals (profile style, link spam, volume patterns).</li>
+    <li><strong>Troll-behavior risk scoring</strong> — hostile/targeting/repetition behavior signals.</li>
+    <li><strong>Scam / bait risk scoring</strong> — scam pitches, bait wording, and coordinated talking points.</li>
+  </ul>
+  <p>If you want simpler output, keep only one or two risk families enabled.</p>
+
+  <h4>Public profile context</h4>
+  <ul>
+    <li><strong>Enable public profile context</strong> — allows weak score adjustments using only publicly visible profile card data (friends/followers/join date/default avatar clues).</li>
+    <li><strong>No-profile-pic detection mode: Strict</strong> — fewer false positives, may miss some default avatars.</li>
+    <li><strong>No-profile-pic detection mode: Aggressive</strong> — catches more suspected defaults, but may over-flag edge cases.</li>
+  </ul>
+  <p>To refresh these signals, hover profile photo/name so Facebook’s preview card loads (see <a href="#profile-hover">profile hover steps</a>).</p>
+
+  <h4>Developer</h4>
+  <ul>
+    <li><strong>Debug mode</strong> — prints diagnostics to DevTools console. Keep off unless troubleshooting.</li>
+  </ul>
+
+  <h4>Save / reset workflow</h4>
+  <ul>
+    <li>Click <strong>Save settings</strong> after changes to apply and persist them locally.</li>
+    <li>Use <strong>Reset to defaults</strong> to return all options to baseline values.</li>
+  </ul>
 
   <h2>6. Risk criteria and thresholds</h2>
 
@@ -763,7 +837,7 @@
   </p>
 
   <p class="muted">
-    © 2026 Bernard Molmisa. All rights reserved.
+    © 2026 ThreadSense for Facebook. All rights reserved.
   </p>
 </body>
 </html>
