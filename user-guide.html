@@ -161,7 +161,8 @@
 
   <h2 id="display-tools">2a. Display, authors, and focus</h2>
   <ul>
-    <li><strong>Soft-hide</strong> — dim or collapse Medium/High comments (Settings → Display).</li>
+    <li><strong>Soft-hide</strong> — dim or collapse Medium/High comments (Settings → Display). Planned:
+      <a href="#future-release">per-axis score thresholds</a>.</li>
     <li><strong>Author snooze</strong> — 24h / 7d / forever from the popover; list in Settings → Authors.</li>
     <li><strong>Custom phrases</strong> — block/allow lines and optional regex; import/export JSON.</li>
     <li><strong>Copy analysis</strong> — popover button and popup “Copy thread snapshot”.</li>
@@ -343,8 +344,12 @@
     <li><strong>Soft-hide: Off</strong> — show badges only; nothing is dimmed/collapsed.</li>
     <li><strong>Soft-hide: Dim</strong> — lowers opacity for Medium+ comments.</li>
     <li><strong>Soft-hide: Collapse High</strong> — hides only High until you expand manually.</li>
-    <li><strong>Soft-hide: Collapse Medium and High</strong> — most aggressive cleanup mode.</li>
+    <li><strong>Soft-hide: Collapse Medium and High</strong> — most aggressive band-based cleanup mode.</li>
   </ul>
+  <p>
+    Planned: auto-hide by numeric score per category (Rude, Pattern, Scam/Bait, Fake) with its own Dim/Collapse mode —
+    see <a href="#future-release">Future release</a>.
+  </p>
   <p>Tip: start with <strong>Dim</strong> first. Move to collapse modes only if your feed is still noisy.</p>
 
   <h4>Authors</h4>
@@ -833,6 +838,89 @@
   <p class="muted">
     Facebook’s menus and labels change when the site is updated. For official help, search Meta’s Help Center on facebook.com for “report a profile” or “report a comment.”
   </p>
+
+  <h2 id="future-release">11. Future release (planned)</h2>
+
+  <div class="notice">
+    <strong>Coming in a future version:</strong> The features below are planned but are not described as part of the
+    current v0.2.0 user experience until that release ships. Details may change slightly before release.
+  </div>
+
+  <h3>Auto-hide by category score</h3>
+
+  <p>
+    Today, <strong>Soft-hide</strong> (Settings → Display) reacts to <strong>Low / Medium / High bands</strong> across
+    all risk axes. The planned update adds <strong>per-category numeric sliders</strong> so you can hide comments when a
+    specific score (0–100) crosses your threshold—for example, hide anything with Rude score 10 or higher even when
+    the overall band is still Low.
+  </p>
+
+  <h4>Planned controls (Settings → Display)</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Control</th>
+        <th>What it does</th>
+        <th>Default (proposed)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Auto-hide by category score</strong></td>
+        <td>Master toggle for score-based hiding</td>
+        <td>Off</td>
+      </tr>
+      <tr>
+        <td><strong>Score threshold soft-hide mode</strong></td>
+        <td><strong>Dim</strong> or <strong>Collapse</strong> only (separate from band soft-hide)</td>
+        <td>Dim</td>
+      </tr>
+      <tr>
+        <td><strong>Rude tone</strong> slider</td>
+        <td>Hide when rude score ≥ threshold</td>
+        <td>0 (off)</td>
+      </tr>
+      <tr>
+        <td><strong>Troll pattern</strong> slider</td>
+        <td>Hide when pattern score ≥ threshold</td>
+        <td>0 (off)</td>
+      </tr>
+      <tr>
+        <td><strong>Scam / bait</strong> slider</td>
+        <td>Hide when scam/bait score ≥ threshold</td>
+        <td>0 (off)</td>
+      </tr>
+      <tr>
+        <td><strong>Fake account</strong> slider</td>
+        <td>Hide when fake score ≥ threshold</td>
+        <td>0 (off)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>How it will work</h4>
+  <ul>
+    <li>Each category slider runs from <strong>0 to 100</strong>. At <strong>0</strong>, that axis does not trigger score-based hide.</li>
+    <li>When the master toggle is on and a score is <strong>≥</strong> its threshold, ThreadSense applies <strong>Score threshold soft-hide mode</strong>—either <strong>Dim</strong> (fade) or <strong>Collapse</strong> (hidden until you click <strong>Show comment (ThreadSense)</strong>).</li>
+    <li><strong>Band soft-hide</strong> and <strong>score threshold soft-hide</strong> use <strong>separate</strong> mode settings. You can keep band soft-hide Off and still hide by score, or use both; the stronger hide wins when both apply.</li>
+    <li>Turn score-based hiding off with the <strong>Auto-hide by category score</strong> checkbox (badges and band soft-hide are unaffected).</li>
+    <li>ThreadSense still <strong>never removes</strong> Facebook content—only your local view changes.</li>
+  </ul>
+
+  <h4>Examples</h4>
+  <ul>
+    <li><strong>Rude = 10</strong>, score mode <strong>Collapse</strong> — comments with rude score 10+ are collapsed even when other axes are quiet.</li>
+    <li><strong>Rude = 0</strong> — rude score never triggers score-based hide.</li>
+    <li>Band soft-hide <strong>Dim</strong>, score mode <strong>Collapse</strong>, <strong>Rude = 25</strong> — a rude-heavy Low-band comment can collapse from the score rule while Medium+ bands still follow band dim rules.</li>
+  </ul>
+
+  <h4>Interaction with other settings</h4>
+  <ul>
+    <li><strong>Detection sensitivity</strong> — thresholds compare against final axis scores after sensitivity is applied.</li>
+    <li><strong>Risk scoring toggles</strong> — if an axis is disabled (e.g. Scam/Bait off), its slider is ignored.</li>
+    <li><strong>Show low-signal results</strong> — still controls badge visibility; score hide applies to the comment body only.</li>
+  </ul>
 
   <p class="muted">
     ThreadSense is not affiliated with Meta Platforms, Inc. This extension is not endorsed by Meta.

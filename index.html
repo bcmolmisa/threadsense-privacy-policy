@@ -72,6 +72,14 @@
     The Extension does <strong>not</strong> use external analytics, tracking scripts, or remote logging.
     No data is stored outside your own browser profile.
   </p>
+  <p>
+    <strong>Offscreen document usage (OCR):</strong> ThreadSense uses Chrome’s offscreen document API only
+    to run optional on-device OCR for image comments. OCR is processed locally in the extension using
+    Tesseract WebAssembly workers so the feature can run without a visible tab or popup. Image data is
+    fetched from the current Facebook page context and converted to text on-device. ThreadSense does not
+    transmit image contents, extracted text, comment text, profile data, or scores to ThreadSense servers
+    or third parties.
+  </p>
 
   <h2>4. How data is used</h2>
   <p>
