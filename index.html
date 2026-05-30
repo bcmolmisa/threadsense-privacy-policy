@@ -2,128 +2,354 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Privacy Policy – ThreadSense – Facebook Troll Detector</title>
+  <title>ThreadSense for Facebook — Local troll &amp; scam signal detection</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ThreadSense flags rude tone, troll patterns, scam bait, and fake-account risk on Facebook—entirely in your browser. No uploads, no tracking, no identity claims.">
+  <meta name="theme-color" content="#070b14">
   <link rel="icon" href="assets/icons/icon32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/icons/icon16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="assets/icons/icon128.png">
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      line-height: 1.6;
-      color: #222;
-    }
-    h1, h2 {
-      color: #111;
-    }
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      margin-top: 1.5rem;
-    }
-    .site-nav {
-      margin-bottom: 1.5rem;
-      font-size: 0.95em;
-    }
-    .site-nav a {
-      color: #0b63ce;
-      text-decoration: none;
-    }
-    .site-nav a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
 </head>
 <body>
-  <nav class="site-nav" aria-label="ThreadSense site">
-    <a href="https://threadsense.org/user-guide.html">User guide</a>
-  </nav>
-  <h1>Privacy Policy for “ThreadSense – Facebook Troll Detector”</h1>
-  <p><strong>Last updated:</strong> May 24, 2026</p>
+  <div class="landing-bg" aria-hidden="true">
+    <div class="landing-bg__orb landing-bg__orb--1"></div>
+    <div class="landing-bg__orb landing-bg__orb--2"></div>
+    <div class="landing-bg__orb landing-bg__orb--3"></div>
+    <div class="landing-bg__grid"></div>
+  </div>
 
-  <h2>1. Introduction</h2>
-  <p>
-    This Privacy Policy explains how “ThreadSense – Facebook Troll Detector” (the “Extension”) handles
-    information when you use it in Google Chrome.
-  </p>
+  <header class="ts-site-header">
+    <div class="ts-container ts-site-header__inner">
+      <a class="ts-brand" href="index.html">
+        <img src="assets/icons/icon32.png" alt="" width="32" height="32">
+        ThreadSense
+      </a>
+      <button class="ts-nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">Menu</button>
+      <nav class="ts-nav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#axes">Risk axes</a>
+        <a href="#faq">FAQ</a>
+        <a href="user-guide.html">User guide</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <a class="ts-btn ts-btn--primary" href="#get-extension">Get the extension</a>
+    </div>
+  </header>
 
-  <h2>2. What data the Extension can access</h2>
-  <p>
-    When enabled, the Extension can read and analyze content on pages you visit on facebook.com, including
-    posts, comments, and related page elements. This access is necessary for the Extension to detect and
-    highlight potential troll-like behavior in your feed.
-  </p>
+  <main class="landing-main">
+    <section class="hero">
+      <div class="ts-container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="hero__eyebrow"><span aria-hidden="true"></span> Chrome extension · v0.2.0</div>
+          <h1>Read the thread with <span class="gradient-text">clearer signal</span></h1>
+          <p class="hero__lead">
+            ThreadSense analyzes comments you already see on Facebook desktop and surfaces local risk cues—rude tone,
+            troll patterns, scam bait, and fake-account heuristics. Everything stays on your device.
+          </p>
+          <div class="hero__actions">
+            <a class="ts-btn ts-btn--primary" href="#get-extension">Add to Chrome</a>
+            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Read the user guide</a>
+          </div>
+          <div class="hero__trust">
+            <div><strong>100% local</strong> No comment uploads</div>
+            <div><strong>Heuristic only</strong> Never claims “bot” or “fake”</div>
+            <div><strong>You stay in control</strong> Dim, collapse, or ignore</div>
+          </div>
+        </div>
 
-  <h2>3. What data is collected, stored, or transmitted</h2>
-  <p>
-    The Extension does <strong>not</strong> collect or store personally identifiable information such as your
-    name, email address, or Facebook login credentials.
-  </p>
-  <p>
-    The Extension does <strong>not</strong> send page content, scores, user IDs, URLs, or any other browsing
-    data to any external servers controlled by the developer or by third parties. All analysis happens locally
-    in your browser.
-  </p>
-  <p>
-    The Extension does <strong>not</strong> use external analytics, tracking scripts, or remote logging.
-    No data is stored outside your own browser profile.
-  </p>
-  <p>
-    <strong>Offscreen document usage (OCR):</strong> ThreadSense uses Chrome’s offscreen document API only
-    to run optional on-device OCR for image comments. OCR is processed locally in the extension using
-    Tesseract WebAssembly workers so the feature can run without a visible tab or popup. Image data is
-    fetched from the current Facebook page context and converted to text on-device. ThreadSense does not
-    transmit image contents, extracted text, comment text, profile data, or scores to ThreadSense servers
-    or third parties.
-  </p>
+        <div class="hero__visual reveal reveal-delay-1" aria-hidden="true">
+          <div class="hero-mock">
+            <div class="hero-mock__glow"></div>
+            <div class="hero-mock__bar">
+              <span class="hero-mock__dot"></span>
+              <span class="hero-mock__dot"></span>
+              <span class="hero-mock__dot"></span>
+            </div>
+            <div class="hero-mock__post">
+              <div class="hero-mock__line"></div>
+              <div class="hero-mock__line hero-mock__line--med"></div>
+            </div>
+            <div class="hero-mock__comment">
+              <div class="hero-mock__avatar"></div>
+              <div class="hero-mock__body">
+                <div class="hero-mock__line hero-mock__line--short"></div>
+                <div class="hero-mock__line"></div>
+                <div class="hero-mock__badges">
+                  <span class="badge-pill badge-pill--rude">Rude Med</span>
+                  <span class="badge-pill badge-pill--pattern">Pattern Low</span>
+                  <span class="badge-pill badge-pill--scam">Scam/Bait High</span>
+                  <span class="badge-pill badge-pill--fake">Fake Low</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-mock__comment">
+              <div class="hero-mock__avatar"></div>
+              <div class="hero-mock__body">
+                <div class="hero-mock__line hero-mock__line--med"></div>
+                <div class="hero-mock__badges">
+                  <span class="badge-pill badge-pill--fake">Fake Med</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>4. How data is used</h2>
-  <p>
-    Any information the Extension can access from facebook.com is used solely to compute and display
-    troll‑detection signals (such as local scores, labels, or visual highlights) in your browser while you
-    browse Facebook. This information is not repurposed for advertising, profiling, or sold for any commercial
-    purpose.
-  </p>
+    <section class="section section--tight">
+      <div class="ts-container reveal">
+        <div class="stats-strip">
+          <div class="stats-strip__item">
+            <div class="stats-strip__value">4</div>
+            <div class="stats-strip__label">Independent risk axes</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__value">0</div>
+            <div class="stats-strip__label">Servers that see your feed</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__value">Local</div>
+            <div class="stats-strip__label">OCR when you enable it</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__value">You</div>
+            <div class="stats-strip__label">Decide what to hide or report</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>5. Data sharing</h2>
-  <p>
-    The Extension does <strong>not</strong> share any user data with third parties. No information accessed
-    or generated by the Extension is sold, rented, or otherwise disclosed to advertisers, analytics providers,
-    or other external parties.
-  </p>
+    <section class="section" id="features">
+      <div class="ts-container">
+        <p class="section__label reveal">Features</p>
+        <h2 class="reveal">Built for noisy threads, not for drama</h2>
+        <p class="section__lead reveal">
+          ThreadSense is a reading aid. It highlights patterns so you can slow down, open the popover, and decide—never
+          auto-reporting, blocking, or posting on your behalf.
+        </p>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <div class="feature-card__icon" aria-hidden="true">◆</div>
+            <h3>Per-axis badges</h3>
+            <p>Separate Low / Med / High pills for Rude, Pattern, Scam/Bait, and Fake—each with its own color and explanation.</p>
+          </article>
+          <article class="feature-card reveal reveal-delay-1">
+            <div class="feature-card__icon" aria-hidden="true">◎</div>
+            <h3>Explainable popovers</h3>
+            <p>Click any badge for reasons, matched phrases, and profile context. Draggable, scrollable detail panels.</p>
+          </article>
+          <article class="feature-card reveal reveal-delay-2">
+            <div class="feature-card__icon" aria-hidden="true">◐</div>
+            <h3>Soft-hide &amp; snooze</h3>
+            <p>Dim or collapse risky comments locally. Snooze authors for 24h, 7d, or forever—Facebook content is never removed.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon" aria-hidden="true">✎</div>
+            <h3>Custom phrases</h3>
+            <p>Block and allow lists plus optional regex. Import/export JSON to move rules between machines.</p>
+          </article>
+          <article class="feature-card reveal reveal-delay-1">
+            <div class="feature-card__icon" aria-hidden="true">▣</div>
+            <h3>Image &amp; meme comments</h3>
+            <p>Uses alt text by default; optional on-device OCR (Tesseract) for text inside images—no cloud processing.</p>
+          </article>
+          <article class="feature-card reveal reveal-delay-2">
+            <div class="feature-card__icon" aria-hidden="true">⚡</div>
+            <h3>Thread heat &amp; focus guard</h3>
+            <p>See when subthreads flare up. Optional nudge to enable calmer dim mode after many high-risk comments.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <h2>6. Security</h2>
-  <p>
-    Because the Extension does not transmit user data to the developer’s servers, there is no server-side
-    storage of your information. Your data remains within your local browser environment. You are responsible
-    for securing access to your device and browser profile.
-  </p>
+    <section class="section" id="how-it-works">
+      <div class="ts-container">
+        <p class="section__label reveal">How it works</p>
+        <h2 class="reveal">Three steps. No account. No upload.</h2>
+        <p class="section__lead reveal">
+          Install once, browse facebook.com on desktop, and let ThreadSense annotate what you already see.
+        </p>
+        <div class="steps">
+          <article class="step-card reveal">
+            <h3>Install &amp; enable</h3>
+            <p>Add ThreadSense from the Chrome Web Store (or load unpacked for testing). Toggle the extension on and open Facebook in a normal tab.</p>
+          </article>
+          <article class="step-card reveal reveal-delay-1">
+            <h3>Scroll your feed</h3>
+            <p>As comments appear, ThreadSense scores visible text and optional public profile cues. Badges attach next to comments and some posts.</p>
+          </article>
+          <article class="step-card reveal reveal-delay-2">
+            <h3>Investigate &amp; tune</h3>
+            <p>Open popovers for context, adjust sensitivity, soft-hide, and custom phrases in Settings. You choose what to trust.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <h2>7. Children’s privacy</h2>
-  <p>
-    The Extension is intended for general audiences and is not directed at children under 13. It does not
-    knowingly collect or store information about children.
-  </p>
+    <section class="section" id="axes">
+      <div class="ts-container">
+        <p class="section__label reveal">Scoring</p>
+        <h2 class="reveal">Four lenses on risky conversation</h2>
+        <p class="section__lead reveal">
+          Scores are 0–100 heuristics with Low / Medium / High bands. They can disagree—that is intentional.
+        </p>
+        <div class="axes-grid">
+          <article class="axis-card axis-card--rude reveal">
+            <div class="axis-card__swatch"></div>
+            <div>
+              <h3>Rude tone</h3>
+              <p>Insults, shouting, condescension, and heated language detected from phrase lists and text signals.</p>
+            </div>
+          </article>
+          <article class="axis-card axis-card--pattern reveal reveal-delay-1">
+            <div class="axis-card__swatch"></div>
+            <div>
+              <h3>Troll pattern</h3>
+              <p>Repetition, multi-target hostility, copy-paste replies, and drive-by engagement patterns.</p>
+            </div>
+          </article>
+          <article class="axis-card axis-card--scam reveal">
+            <div class="axis-card__swatch"></div>
+            <div>
+              <h3>Scam / bait</h3>
+              <p>Promotional scams, debate bait, coordinated talking points, and bait-style wording bundles.</p>
+            </div>
+          </article>
+          <article class="axis-card axis-card--fake reveal reveal-delay-1">
+            <div class="axis-card__swatch"></div>
+            <div>
+              <h3>Fake-account risk</h3>
+              <p>Link spam, thin profiles, default avatars, burst activity—behavior cues, not identity verdicts.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <h2>8. Changes to this policy</h2>
-  <p>
-    This Privacy Policy may be updated from time to time. When updated, a revised version will be published
-    at the same URL, and the “Last updated” date will be changed. Continued use of the Extension after any
-    update indicates your acceptance of the revised policy.
-  </p>
+    <section class="section">
+      <div class="ts-container reveal">
+        <div class="privacy-block">
+          <div>
+            <p class="section__label">Privacy-first</p>
+            <h2>Your feed never leaves your browser</h2>
+            <p class="section__lead" style="margin-bottom: 0;">
+              ThreadSense is designed for people who want signal without surveillance.
+            </p>
+            <ul>
+              <li>No analytics, ads, or remote logging</li>
+              <li>No selling or profiling of comment text</li>
+              <li>Optional OCR runs locally via Tesseract workers</li>
+              <li>Bug reports stay on-device until you choose to share them</li>
+            </ul>
+            <p style="margin-top: 1.25rem;">
+              <a class="ts-btn ts-btn--ghost" href="privacy.html">Read the full privacy policy</a>
+            </p>
+          </div>
+          <div class="privacy-block__shield" aria-hidden="true">🛡</div>
+        </div>
+      </div>
+    </section>
 
-  <h2>9. Contact</h2>
-  <p>
-    If you have questions or concerns about this Privacy Policy or the Extension’s data practices, you can
-    contact the developer at:
-  </p>
-  <p>
-    <strong>ThreadSense for Facebook</strong><br>
-    <strong>Email:</strong> <a href="mailto:info@threadsense.org">info@threadsense.org</a>
-  </p>
+    <section class="section" id="faq">
+      <div class="ts-container">
+        <p class="section__label reveal">FAQ</p>
+        <h2 class="reveal">Common questions</h2>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>Does ThreadSense report or block people for me?</summary>
+            <div class="faq-item__body">
+              No. It only changes how comments look on your screen (badges, dim, collapse) and never contacts Facebook or other users on your behalf.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Can it prove someone is a troll or fake account?</summary>
+            <div class="faq-item__body">
+              No. Scores are pattern-based guesses and can be wrong—especially with sarcasm, quotes, or jokes. Use them as one input among many.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What data leaves my computer?</summary>
+            <div class="faq-item__body">
+              By default, none of your feed content is sent to ThreadSense servers. Optional phrase-list updates fetch only public word lists. See the <a href="privacy.html">privacy policy</a> for OCR and future license checks.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work on mobile Facebook?</summary>
+            <div class="faq-item__body">
+              ThreadSense targets Facebook on desktop Chrome. Mobile browsers do not support this extension model.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Is ThreadSense affiliated with Meta?</summary>
+            <div class="faq-item__body">
+              No. ThreadSense is an independent project and is not endorsed by Meta Platforms, Inc.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="get-extension">
+      <div class="ts-container reveal">
+        <div class="cta-panel">
+          <h2>Ready for calmer scrolling?</h2>
+          <p>
+            Install ThreadSense for Facebook, skim the user guide, and tune sensitivity to your feed. When in doubt, click a badge and read why it fired.
+          </p>
+          <div class="cta-panel__actions">
+            <a class="ts-btn ts-btn--primary" href="https://chromewebstore.google.com/search/ThreadSense%20Facebook" target="_blank" rel="noopener noreferrer">Find on Chrome Web Store</a>
+            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Installation &amp; settings guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ts-site-footer">
+    <div class="ts-container">
+      <div class="ts-site-footer__grid">
+        <div>
+          <a class="ts-brand" href="index.html">
+            <img src="assets/icons/icon32.png" alt="" width="28" height="28">
+            ThreadSense
+          </a>
+          <p style="margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--ts-muted); max-width: 16rem;">
+            Local heuristic signals for Facebook desktop. Not affiliated with Meta.
+          </p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="user-guide.html">User guide</a></li>
+            <li><a href="#get-extension">Get extension</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@threadsense.org">info@threadsense.org</a></li>
+            <li><a href="mailto:support@threadsense.org">support@threadsense.org</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ts-site-footer__bottom">
+        <span>© 2026 ThreadSense for Facebook. All rights reserved.</span>
+        <span>Heuristic estimates only · <a href="privacy.html">Privacy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/landing.js"></script>
 </body>
 </html>

@@ -4,119 +4,100 @@
   <meta charset="UTF-8">
   <title>ThreadSense for Facebook — User Guide</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete user guide for ThreadSense for Facebook: install, badges, settings, risk axes, privacy, and troubleshooting.">
+  <meta name="theme-color" content="#070b14">
   <link rel="icon" href="assets/icons/icon32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/icons/icon16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="assets/icons/icon128.png">
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem 3rem;
-      line-height: 1.6;
-      color: #222;
-      background: #fafafa;
-    }
-    h1, h2, h3 {
-      color: #111;
-    }
-    h1 {
-      margin-bottom: 0.25rem;
-    }
-    h2 {
-      margin-top: 2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.25rem;
-    }
-    h3 {
-      margin-top: 1.25rem;
-    }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      background: #f0f0f0;
-      padding: 0.1rem 0.25rem;
-      border-radius: 3px;
-      font-size: 0.95em;
-    }
-    pre {
-      background: #111;
-      color: #f5f5f5;
-      padding: 0.75rem 1rem;
-      overflow-x: auto;
-      border-radius: 6px;
-      font-size: 0.9em;
-    }
-    pre code {
-      background: none;
-      padding: 0;
-      color: inherit;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-      font-size: 0.95em;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.4rem 0.5rem;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: #f1f1f1;
-      font-weight: 600;
-    }
-    .badge {
-      font-weight: 600;
-    }
-    .notice {
-      padding: 0.75rem 1rem;
-      background: #fff3cd;
-      border: 1px solid #ffeeba;
-      border-radius: 4px;
-      margin: 1rem 0;
-      font-size: 0.95em;
-    }
-    .muted {
-      color: #666;
-      font-size: 0.9em;
-    }
-    a {
-      color: #0b63ce;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    ul {
-      margin-top: 0.25rem;
-    }
-    .site-nav {
-      margin-bottom: 1rem;
-      font-size: 0.95em;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/user-guide.css">
 </head>
-<body>
-  <nav class="site-nav" aria-label="ThreadSense site">
-    <a href="https://threadsense.org/">Privacy policy</a>
-  </nav>
-  <h1>ThreadSense for Facebook — User Guide</h1>
-  <p><strong>Version 0.2.0</strong></p>
-
-  <p>
-    ThreadSense is a Chrome extension that analyzes posts and comments you can already see on Facebook
-    desktop and shows local heuristic risk estimates for troll-like behavior and fake-account patterns.
-    It runs entirely in your browser and does not send data to any server.
-  </p>
-
-  <div class="notice">
-    <strong>Important:</strong> ThreadSense never claims anyone is a troll, bot, or fake account.
-    Scores are pattern-based guesses and can be wrong. Use them as one input among many—not as proof.
+<body class="guide-page">
+  <div class="guide-bg" aria-hidden="true">
+    <div class="guide-bg__orb guide-bg__orb--1"></div>
+    <div class="guide-bg__orb guide-bg__orb--2"></div>
   </div>
 
-  <h2>1. What ThreadSense does</h2>
+  <header class="ts-site-header">
+    <div class="ts-container ts-site-header__inner">
+      <a class="ts-brand" href="index.html">
+        <img src="assets/icons/icon32.png" alt="" width="32" height="32">
+        ThreadSense
+      </a>
+      <button class="ts-nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">Menu</button>
+      <nav class="ts-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="index.html#get-extension">Get extension</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <a class="ts-btn ts-btn--primary" href="index.html#get-extension">Install</a>
+    </div>
+  </header>
+
+  <div class="ts-container guide-layout">
+    <aside class="guide-sidebar" aria-label="On this page">
+      <p class="guide-sidebar__label">On this page</p>
+      <ul class="guide-toc">
+        <li><a href="#what-it-does">What it does</a></li>
+        <li><a href="#quick-start">Quick start</a></li>
+        <li><a href="#display-tools">Display &amp; focus</a></li>
+        <li><a href="#badges">Badges &amp; popovers</a></li>
+        <li><a href="#popup">Toolbar popup</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#risk-criteria">Risk criteria</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#responsible-use">Responsible use</a></li>
+        <li><a href="#reporting-on-facebook">Reporting</a></li>
+        <li><a href="#future-release">Future release</a></li>
+      </ul>
+    </aside>
+
+    <article class="guide-main">
+      <header class="guide-hero reveal">
+        <p class="guide-hero__eyebrow"><span aria-hidden="true"></span> Documentation · v0.2.0</p>
+        <h1>ThreadSense for Facebook — User Guide</h1>
+        <p class="guide-hero__lead">
+          Everything you need to install the extension, read risk badges, tune settings, and browse Facebook
+          with clearer local signals—without sending your feed to any server.
+        </p>
+        <div class="guide-hero__meta">
+          <span><strong>Platform:</strong> Chrome on desktop</span>
+          <span><strong>Site:</strong> facebook.com</span>
+          <span><strong>Analysis:</strong> 100% on-device</span>
+        </div>
+      </header>
+
+      <div class="notice reveal">
+        <strong>Important:</strong> ThreadSense never claims anyone is a troll, bot, or fake account.
+        Scores are pattern-based guesses and can be wrong. Use them as one input among many—not as proof.
+      </div>
+
+      <div class="guide-visual reveal" aria-hidden="true">
+        <div class="guide-visual__body">
+          <div class="axis-legend">
+            <div class="axis-legend__item axis-legend__item--rude">
+              <span class="axis-legend__swatch"></span>
+              <div><strong>Rude tone</strong><p>Insults, shouting, hostility</p></div>
+            </div>
+            <div class="axis-legend__item axis-legend__item--pattern">
+              <span class="axis-legend__swatch"></span>
+              <div><strong>Troll pattern</strong><p>Repetition, targeting, copy-paste</p></div>
+            </div>
+            <div class="axis-legend__item axis-legend__item--scam">
+              <span class="axis-legend__swatch"></span>
+              <div><strong>Scam / bait</strong><p>Promos, debate bait, talking points</p></div>
+            </div>
+            <div class="axis-legend__item axis-legend__item--fake">
+              <span class="axis-legend__swatch"></span>
+              <div><strong>Fake-account risk</strong><p>Thin profiles, link spam, bursts</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="guide-visual__caption">Four independent axes—each with its own score and badge color.</p>
+      </div>
+
+  <h2 id="what-it-does">1. What ThreadSense does</h2>
 
   <p>While you browse Facebook (feed, posts, groups, etc.), ThreadSense:</p>
   <ul>
@@ -146,7 +127,21 @@
     <li>Judge political affiliation, protected traits, or mental health.</li>
   </ul>
 
-  <h2>2. Quick start</h2>
+  <h2 id="quick-start">2. Quick start</h2>
+
+  <div class="guide-visual reveal" aria-labelledby="quick-start-visual">
+    <div class="guide-visual__body" id="quick-start-visual">
+      <div class="step-flow">
+        <div class="step-flow__item"><strong>Install</strong><span>Chrome Web Store or tester package</span></div>
+        <div class="step-flow__item"><strong>Enable</strong><span>chrome://extensions → ThreadSense on</span></div>
+        <div class="step-flow__item"><strong>Open Facebook</strong><span>Desktop feed, groups, or posts</span></div>
+        <div class="step-flow__item"><strong>Scroll</strong><span>Comments load as you browse</span></div>
+        <div class="step-flow__item"><strong>Spot badges</strong><span>Colored pills beside comments</span></div>
+        <div class="step-flow__item"><strong>Click a badge</strong><span>Open the explanation popover</span></div>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Typical first-session flow—badges appear as visible comments are analyzed.</p>
+  </div>
 
   <ol>
     <li>Install ThreadSense from the Chrome Web Store or the tester link.</li>
@@ -160,6 +155,21 @@
   <p>If you see no badges at all, see <a href="#troubleshooting">Troubleshooting</a>.</p>
 
   <h2 id="display-tools">2a. Display, authors, and focus</h2>
+
+  <div class="guide-visual reveal">
+    <div class="guide-visual__body">
+      <div class="feature-chips">
+        <span class="feature-chip">Soft-hide dim / collapse</span>
+        <span class="feature-chip">Author snooze</span>
+        <span class="feature-chip">Custom phrases</span>
+        <span class="feature-chip">Copy analysis</span>
+        <span class="feature-chip">Thread heat</span>
+        <span class="feature-chip">Focus guard</span>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Tools that change how noisy threads look on your screen—Facebook content is never removed.</p>
+  </div>
+
   <ul>
     <li><strong>Soft-hide</strong> — dim or collapse Medium/High comments (Settings → Display). Planned:
       <a href="#future-release">per-axis score thresholds</a>.</li>
@@ -170,7 +180,42 @@
     <li><strong>Focus guard</strong> — optional prompt to enable dim mode after many High comments.</li>
   </ul>
 
-  <h2>3. Badges, highlights, and popovers</h2>
+  <h2 id="badges">3. Badges, highlights, and popovers</h2>
+
+  <div class="guide-visual reveal">
+    <div class="guide-visual__body">
+      <div class="badge-showcase" aria-hidden="true">
+        <span class="badge-pill badge-pill--rude">Rude Med</span>
+        <span class="badge-pill badge-pill--pattern">Pattern Low</span>
+        <span class="badge-pill badge-pill--scam">Scam/Bait High</span>
+        <span class="badge-pill badge-pill--fake">Fake Low</span>
+        <span class="badge-pill badge-pill--neutral">No signals</span>
+      </div>
+      <div class="mock-feed">
+        <div class="mock-feed__comment">
+          <div class="mock-feed__avatar"></div>
+          <div class="mock-feed__lines">
+            <div class="mock-feed__line mock-feed__line--med"></div>
+            <div class="mock-feed__line"></div>
+            <div class="badge-showcase" style="margin: 0.35rem 0 0;">
+              <span class="badge-pill badge-pill--rude">Rude Med</span>
+              <span class="badge-pill badge-pill--scam">Scam/Bait High</span>
+            </div>
+          </div>
+        </div>
+        <div class="mock-popover">
+          <p class="mock-popover__title">Explanation popover</p>
+          <div class="mock-popover__scores">
+            <div class="mock-score mock-score--rude">Rude 52</div>
+            <div class="mock-score mock-score--pattern">Pattern 18</div>
+            <div class="mock-score mock-score--scam">Scam 74</div>
+            <div class="mock-score mock-score--fake">Fake 22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Illustration: badges on a comment and the draggable detail popover (not a screenshot—layout may vary on Facebook).</p>
+  </div>
 
   <h3>Badge types</h3>
   <ul>
@@ -185,6 +230,12 @@
   </ul>
 
   <h3>Score levels</h3>
+
+  <div class="level-bands reveal" aria-hidden="true">
+    <div class="level-band level-band--low"><strong>Low</strong>0–39 · weak signal</div>
+    <div class="level-band level-band--med"><strong>Medium</strong>40–69 · worth a look</div>
+    <div class="level-band level-band--high"><strong>High</strong>70–100 · be cautious</div>
+  </div>
 
   <p>Each comment/post can have:</p>
   <table>
@@ -241,6 +292,20 @@
     profile preview card.
   </p>
 
+  <div class="guide-visual reveal">
+    <div class="guide-visual__body">
+      <div class="hover-demo" aria-hidden="true">
+        <div class="hover-demo__panel">Hover profile<br>photo or name</div>
+        <div class="hover-demo__arrow" aria-hidden="true">→</div>
+        <div class="hover-demo__panel">
+          <div class="hover-demo__card">Facebook preview card loads</div>
+          <p style="margin: 0.5rem 0 0; font-size: 0.8rem;">Friends · Joined · Avatar</p>
+        </div>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Profile hover refreshes fake-account cues from public preview data only.</p>
+  </div>
+
   <p><strong>To update risk flags for that person’s comments on the page:</strong></p>
   <ol>
     <li>In <strong>Settings</strong>, turn on <strong>Enable public profile context</strong> (recommended; on by default).</li>
@@ -258,7 +323,30 @@
     never opens or stays empty, badges will stay as they were.
   </p>
 
-  <h2>4. Toolbar popup</h2>
+  <h2 id="popup">4. Toolbar popup</h2>
+
+  <div class="guide-visual reveal">
+    <div class="guide-visual__body">
+      <div class="mock-popup" aria-hidden="true">
+        <div class="mock-popup__head">
+          <img src="assets/icons/icon32.png" alt="" width="24" height="24">
+          ThreadSense
+        </div>
+        <div class="mock-popup__stats">
+          <div class="mock-popup__stat"><strong>42</strong><span>Scanned</span></div>
+          <div class="mock-popup__stat"><strong>3</strong><span>High</span></div>
+          <div class="mock-popup__stat"><strong>8</strong><span>Med</span></div>
+          <div class="mock-popup__stat"><strong>31</strong><span>Low</span></div>
+        </div>
+        <div class="mock-popup__toggles">
+          <div class="mock-popup__row">Enable on Facebook <span class="mock-toggle"></span></div>
+          <div class="mock-popup__row">Show low signals <span class="mock-toggle mock-toggle--off"></span></div>
+          <div class="mock-popup__row">Tag every comment <span class="mock-toggle mock-toggle--off"></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Popup summary for the active Facebook tab—stats show “—” on non-Facebook pages.</p>
+  </div>
 
   <p>Click the ThreadSense icon in the Chrome toolbar to open the popup.</p>
 
@@ -313,7 +401,24 @@
     captures that tab directly, not whatever tab is visible on screen. Nothing is uploaded to ThreadSense automatically.
   </p>
 
-  <h2>5. Settings (options page)</h2>
+  <h2 id="settings">5. Settings (options page)</h2>
+
+  <div class="guide-visual reveal">
+    <div class="guide-visual__body">
+      <div class="settings-grid" aria-hidden="true">
+        <div class="settings-grid__card"><strong>General</strong>Master on/off, tag all</div>
+        <div class="settings-grid__card"><strong>Sensitivity</strong>Low · Normal · High</div>
+        <div class="settings-grid__card"><strong>Display</strong>Soft-hide modes</div>
+        <div class="settings-grid__card"><strong>Authors</strong>Snooze list</div>
+        <div class="settings-grid__card"><strong>Phrases</strong>Block / allow / regex</div>
+        <div class="settings-grid__card"><strong>Focus guard</strong>Doomscroll prompt</div>
+        <div class="settings-grid__card"><strong>Image / OCR</strong>Alt text &amp; Tesseract</div>
+        <div class="settings-grid__card"><strong>Risk scoring</strong>Per-axis toggles</div>
+        <div class="settings-grid__card"><strong>Profile</strong>Public context</div>
+      </div>
+    </div>
+    <p class="guide-visual__caption">Options page sections—open via popup “All settings” or chrome://extensions.</p>
+  </div>
 
   <p>You can open the full settings page by:</p>
   <ul>
@@ -416,7 +521,7 @@
     <li>Use <strong>Reset to defaults</strong> to return all options to baseline values.</li>
   </ul>
 
-  <h2>6. Risk criteria and thresholds</h2>
+  <h2 id="risk-criteria">6. Risk criteria and thresholds</h2>
 
   <p>
     ThreadSense uses a set of heuristic signals to estimate troll and fake-account risk. This section
@@ -673,7 +778,11 @@
     <li>Verified accounts (blue check) skip troll and fake scoring; post authors may skip some fake patterns related to link repetition.</li>
   </ul>
 
-  <h2>7. Privacy and data</h2>
+  <h2 id="privacy">7. Privacy and data</h2>
+
+  <div class="notice notice--info reveal">
+    <strong>Local-first:</strong> Comment text and scores are processed in memory on your device. Nothing is uploaded to ThreadSense servers during normal browsing.
+  </div>
 
   <table>
     <thead>
@@ -715,7 +824,8 @@
 
   <p class="muted">
     For the full privacy policy, see
-    <a href="https://threadsense.org/">https://threadsense.org/</a>.
+    <a href="privacy.html">privacy.html</a> (also at
+    <a href="https://threadsense.org/privacy.html">https://threadsense.org/privacy.html</a>).
   </p>
 
   <h2 id="troubleshooting">8. Troubleshooting</h2>
@@ -779,7 +889,7 @@
     </tbody>
   </table>
 
-  <h2>9. Responsible use</h2>
+  <h2 id="responsible-use">9. Responsible use</h2>
 
   <ul>
     <li>Scores are approximate. Sarcasm, jokes, or quoted insults can be misread.</li>
@@ -926,8 +1036,51 @@
     ThreadSense is not affiliated with Meta Platforms, Inc. This extension is not endorsed by Meta.
   </p>
 
-  <p class="muted">
-    © 2026 ThreadSense for Facebook. All rights reserved.
-  </p>
+    </article>
+  </div>
+
+  <footer class="ts-site-footer">
+    <div class="ts-container">
+      <div class="ts-site-footer__grid">
+        <div>
+          <a class="ts-brand" href="index.html">
+            <img src="assets/icons/icon32.png" alt="" width="28" height="28">
+            ThreadSense
+          </a>
+          <p style="margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--ts-muted); max-width: 16rem;">
+            User guide for the Chrome extension. Not affiliated with Meta.
+          </p>
+        </div>
+        <div>
+          <h4>Guide</h4>
+          <ul>
+            <li><a href="#quick-start">Quick start</a></li>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="privacy.html">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@threadsense.org">info@threadsense.org</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ts-site-footer__bottom">
+        <span>© 2026 ThreadSense for Facebook. Not affiliated with Meta.</span>
+        <span><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/user-guide.js"></script>
 </body>
 </html>
