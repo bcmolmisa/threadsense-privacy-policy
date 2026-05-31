@@ -158,6 +158,50 @@
   font-size: 0.95rem;
 }
 
+.hero__support {
+  margin: 1.75rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--ts-muted);
+  max-width: 34rem;
+}
+
+.feature-grid--benefits {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.credibility-block p + p {
+  color: var(--ts-muted);
+  line-height: 1.65;
+  margin: 0 0 1.25rem;
+  max-width: 42rem;
+}
+
+.testimonial-block {
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--ts-border);
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(59, 130, 246, 0.55);
+}
+
+.testimonial-block p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ts-text);
+  font-style: italic;
+}
+
+.cta-panel__tagline {
+  margin: 1.35rem 0 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: #93c5fd;
+}
+
 /* Mock feed */
 .hero-mock {
   position: relative;

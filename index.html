@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ThreadSense for Facebook — Local troll &amp; scam signal detection</title>
+  <title>ThreadSense for Facebook — Calmer scrolling with local risk cues</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ThreadSense flags rude tone, troll patterns, scam bait, and fake-account risk on Facebook—entirely in your browser. No uploads, no tracking, no identity claims.">
+  <meta name="description" content="ThreadSense helps you browse Facebook with less noise, less toxicity, and more control. Local rude-tone, troll-pattern, scam, and fake-account heuristics—100% on your device.">
   <meta name="theme-color" content="#070b14">
   <link rel="icon" href="assets/icons/icon32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/icons/icon16.png" type="image/png" sizes="16x16">
@@ -29,8 +29,9 @@
       <button class="ts-nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">Menu</button>
       <nav class="ts-nav" aria-label="Primary">
         <a href="#features">Features</a>
+        <a href="#why-threadsense">Why ThreadSense</a>
         <a href="#how-it-works">How it works</a>
-        <a href="#axes">Risk axes</a>
+        <a href="#axes">Scoring</a>
         <a href="#faq">FAQ</a>
         <a href="user-guide.html">User guide</a>
         <a href="privacy.html">Privacy</a>
@@ -43,21 +44,26 @@
     <section class="hero">
       <div class="ts-container hero__grid">
         <div class="hero__copy reveal">
-          <div class="hero__eyebrow"><span aria-hidden="true"></span> Chrome extension · v0.2.0</div>
+          <div class="hero__eyebrow"><span aria-hidden="true"></span> Chrome extension · Facebook desktop</div>
           <h1>Read the thread with <span class="gradient-text">clearer signal</span></h1>
           <p class="hero__lead">
-            ThreadSense analyzes comments you already see on Facebook desktop and surfaces local risk cues—rude tone,
-            troll patterns, scam bait, and fake-account heuristics. Everything stays on your device.
+            ThreadSense helps you browse Facebook with less noise, less toxicity, and more control. It analyzes
+            comments you already see on Facebook desktop and surfaces local risk cues—like rude tone, troll patterns,
+            scam bait, and fake-account heuristics—while keeping everything on your device.
           </p>
           <div class="hero__actions">
             <a class="ts-btn ts-btn--primary" href="#get-extension">Add to Chrome</a>
-            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Read the user guide</a>
+            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Read the User Guide</a>
           </div>
           <div class="hero__trust">
-            <div><strong>100% local</strong> No comment uploads</div>
-            <div><strong>Heuristic only</strong> Never claims “bot” or “fake”</div>
-            <div><strong>You stay in control</strong> Dim, collapse, or ignore</div>
+            <div><strong>100% local</strong></div>
+            <div><strong>No comment uploads</strong></div>
+            <div><strong>Heuristic only</strong></div>
+            <div><strong>You stay in control</strong></div>
           </div>
+          <p class="hero__support">
+            Silence the noise without unfriending anyone. Browse with more peace of mind.
+          </p>
         </div>
 
         <div class="hero__visual reveal reveal-delay-1" aria-hidden="true">
@@ -125,42 +131,66 @@
     <section class="section" id="features">
       <div class="ts-container">
         <p class="section__label reveal">Features</p>
-        <h2 class="reveal">Built for noisy threads, not for drama</h2>
+        <h2 class="reveal">Built for noisy threads, not for drama.</h2>
         <p class="section__lead reveal">
-          ThreadSense is a reading aid. It highlights patterns so you can slow down, open the popover, and decide—never
-          auto-reporting, blocking, or posting on your behalf.
+          ThreadSense is a reading aid for people who want calmer, more deliberate Facebook browsing. It helps you
+          notice risky conversation patterns, reduce toxic noise, and decide what deserves your attention—without
+          forcing you to unfriend people or escalate every interaction.
         </p>
-        <div class="feature-grid">
+        <div class="feature-grid feature-grid--benefits">
           <article class="feature-card reveal">
-            <div class="feature-card__icon" aria-hidden="true">◆</div>
-            <h3>Per-axis badges</h3>
-            <p>Separate Low / Med / High pills for Rude, Pattern, Scam/Bait, and Fake—each with its own color and explanation.</p>
+            <div class="feature-card__icon" aria-hidden="true">◐</div>
+            <h3>Silence comments without unfriending</h3>
+            <p>You do not need to cut people off just to make Facebook usable again. ThreadSense lets you dim, collapse,
+              ignore, or snooze risky comments locally, so you can quiet distracting or toxic voices without changing
+              your actual Facebook relationships.</p>
           </article>
           <article class="feature-card reveal reveal-delay-1">
             <div class="feature-card__icon" aria-hidden="true">◎</div>
-            <h3>Explainable popovers</h3>
-            <p>Click any badge for reasons, matched phrases, and profile context. Draggable, scrollable detail panels.</p>
+            <h3>Less noise, more peace of mind</h3>
+            <p>Instead of absorbing every hostile, baiting, or suspicious comment, ThreadSense gives you an easier way
+              to filter the emotional clutter. The result is a feed that feels calmer, more manageable, and less mentally
+              draining.</p>
           </article>
           <article class="feature-card reveal reveal-delay-2">
-            <div class="feature-card__icon" aria-hidden="true">◐</div>
-            <h3>Soft-hide &amp; snooze</h3>
-            <p>Dim or collapse risky comments locally. Snooze authors for 24h, 7d, or forever—Facebook content is never removed.</p>
+            <div class="feature-card__icon" aria-hidden="true">◆</div>
+            <h3>See why a comment was flagged</h3>
+            <p>Click any badge to open reasons, matched phrases, and profile context. You do not just get a
+              warning—you get explainable cues that help you inspect before reacting.</p>
           </article>
-          <article class="feature-card reveal">
-            <div class="feature-card__icon" aria-hidden="true">✎</div>
-            <h3>Custom phrases</h3>
-            <p>Block and allow lists plus optional regex. Import/export JSON to move rules between machines.</p>
-          </article>
-          <article class="feature-card reveal reveal-delay-1">
-            <div class="feature-card__icon" aria-hidden="true">▣</div>
-            <h3>Image &amp; meme comments</h3>
-            <p>Uses alt text by default; optional on-device OCR (Tesseract) for text inside images—no cloud processing.</p>
-          </article>
-          <article class="feature-card reveal reveal-delay-2">
-            <div class="feature-card__icon" aria-hidden="true">⚡</div>
-            <h3>Thread heat &amp; focus guard</h3>
-            <p>See when subthreads flare up. Optional nudge to enable calmer dim mode after many high-risk comments.</p>
-          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-threadsense">
+      <div class="ts-container reveal">
+        <div class="privacy-block credibility-block">
+          <div>
+            <p class="section__label">Why ThreadSense</p>
+            <h2>Designed for caution, privacy, and user control.</h2>
+            <p class="section__lead">
+              ThreadSense was built as a privacy-first Chrome extension for Facebook desktop users who want better
+              signal without surveillance or overclaiming. Its goal is not to label people with certainty, but to help
+              users inspect patterns more carefully and make their own decisions.
+            </p>
+            <p>
+              The product works locally on your device, does not upload your feed by default, does not auto-report or
+              auto-block people, and never presents heuristic cues as proof of identity. That matters because a tool
+              like this is most credible when it helps users think more clearly instead of pretending to replace their
+              judgment.
+            </p>
+            <ul>
+              <li>100% local analysis by default</li>
+              <li>No analytics, ads, or remote logging</li>
+              <li>Optional OCR runs on-device only</li>
+              <li>Facebook content is never removed by the extension</li>
+            </ul>
+            <blockquote class="testimonial-block">
+              <p>“ThreadSense helps me avoid getting pulled into every toxic thread. I can quiet noisy comments, see
+                why something was flagged, and keep scrolling without turning Facebook into a fight.”</p>
+            </blockquote>
+          </div>
+          <div class="privacy-block__shield" aria-hidden="true">🛡</div>
         </div>
       </div>
     </section>
@@ -170,20 +200,25 @@
         <p class="section__label reveal">How it works</p>
         <h2 class="reveal">Three steps. No account. No upload.</h2>
         <p class="section__lead reveal">
-          Install once, browse facebook.com on desktop, and let ThreadSense annotate what you already see.
+          ThreadSense is simple to use: install it once, browse Facebook desktop normally, and let it annotate the
+          comments you already see. When something looks risky, you can inspect it, tune settings, or soften its
+          visibility locally.
         </p>
         <div class="steps">
           <article class="step-card reveal">
-            <h3>Install &amp; enable</h3>
-            <p>Add ThreadSense from the Chrome Web Store (or load unpacked for testing). Toggle the extension on and open Facebook in a normal tab.</p>
+            <h3>1. Install &amp; enable</h3>
+            <p>Add ThreadSense from the Chrome Web Store and open Facebook in a normal desktop tab. No separate
+              account setup is required.</p>
           </article>
           <article class="step-card reveal reveal-delay-1">
-            <h3>Scroll your feed</h3>
-            <p>As comments appear, ThreadSense scores visible text and optional public profile cues. Badges attach next to comments and some posts.</p>
+            <h3>2. Scroll your feed</h3>
+            <p>As comments appear, ThreadSense scores visible text and optional public profile cues. It adds badges
+              next to comments and some posts so you can scan the thread faster.</p>
           </article>
           <article class="step-card reveal reveal-delay-2">
-            <h3>Investigate &amp; tune</h3>
-            <p>Open popovers for context, adjust sensitivity, soft-hide, and custom phrases in Settings. You choose what to trust.</p>
+            <h3>3. Investigate &amp; tune</h3>
+            <p>Click a badge to open more detail, then dim, collapse, ignore, or snooze comments as needed. Adjust
+              sensitivity and custom phrases in Settings to match your own tolerance for noise.</p>
           </article>
         </div>
       </div>
@@ -192,40 +227,46 @@
     <section class="section" id="axes">
       <div class="ts-container">
         <p class="section__label reveal">Scoring</p>
-        <h2 class="reveal">Four lenses on risky conversation</h2>
+        <h2 class="reveal">Four lenses on risky conversation.</h2>
         <p class="section__lead reveal">
-          Scores are 0–100 heuristics with Low / Medium / High bands. They can disagree—that is intentional.
+          ThreadSense does not reduce everything to one generic score. Instead, it gives you separate heuristic signals
+          so you can tell whether something looks rude, baiting, repetitive, suspicious, or simply worth a second look.
         </p>
         <div class="axes-grid">
           <article class="axis-card axis-card--rude reveal">
             <div class="axis-card__swatch"></div>
             <div>
               <h3>Rude tone</h3>
-              <p>Insults, shouting, condescension, and heated language detected from phrase lists and text signals.</p>
+              <p>Highlights insults, shouting, condescension, and heated language based on phrase lists and text signals.</p>
             </div>
           </article>
           <article class="axis-card axis-card--pattern reveal reveal-delay-1">
             <div class="axis-card__swatch"></div>
             <div>
               <h3>Troll pattern</h3>
-              <p>Repetition, multi-target hostility, copy-paste replies, and drive-by engagement patterns.</p>
+              <p>Surfaces repetition, multi-target hostility, copy-paste replies, and drive-by engagement patterns.</p>
             </div>
           </article>
           <article class="axis-card axis-card--scam reveal">
             <div class="axis-card__swatch"></div>
             <div>
               <h3>Scam / bait</h3>
-              <p>Promotional scams, debate bait, coordinated talking points, and bait-style wording bundles.</p>
+              <p>Flags promotional scams, debate bait, and bait-style wording bundles that often clutter Facebook threads.</p>
             </div>
           </article>
           <article class="axis-card axis-card--fake reveal reveal-delay-1">
             <div class="axis-card__swatch"></div>
             <div>
               <h3>Fake-account risk</h3>
-              <p>Link spam, thin profiles, default avatars, burst activity—behavior cues, not identity verdicts.</p>
+              <p>Uses behavior cues such as link spam, thin profiles, default avatars, and burst activity—without claiming identity certainty.</p>
             </div>
           </article>
         </div>
+        <p class="section__lead section__lead--after reveal" style="margin-top: 2rem; margin-bottom: 0;">
+          When ThreadSense fires, you get practical outputs: visible badges, explainable popovers, and tools to reduce
+          unwanted noise locally. That means less emotional clutter, more context, and more control over how you
+          experience Facebook.
+        </p>
       </div>
     </section>
 
@@ -234,9 +275,11 @@
         <div class="privacy-block">
           <div>
             <p class="section__label">Privacy-first</p>
-            <h2>Your feed never leaves your browser</h2>
+            <h2>Your feed never leaves your browser.</h2>
             <p class="section__lead" style="margin-bottom: 0;">
-              ThreadSense is designed for people who want signal without surveillance.
+              ThreadSense is designed for people who want a calmer Facebook experience without trading away privacy.
+              There are no analytics, no ads, no remote logging, no selling or profiling of comment text, and no cloud
+              processing by default.
             </p>
             <ul>
               <li>No analytics, ads, or remote logging</li>
@@ -245,7 +288,7 @@
               <li>Bug reports stay on-device until you choose to share them</li>
             </ul>
             <p style="margin-top: 1.25rem;">
-              <a class="ts-btn ts-btn--ghost" href="privacy.html">Read the full privacy policy</a>
+              <a class="ts-btn ts-btn--ghost" href="privacy.html">Read the full Privacy Policy</a>
             </p>
           </div>
           <div class="privacy-block__shield" aria-hidden="true">🛡</div>
@@ -259,21 +302,31 @@
         <h2 class="reveal">Common questions</h2>
         <div class="faq-list reveal">
           <details class="faq-item">
-            <summary>Does ThreadSense report or block people for me?</summary>
+            <summary>Do I have to unfriend someone to make ThreadSense useful?</summary>
             <div class="faq-item__body">
-              No. It only changes how comments look on your screen (badges, dim, collapse) and never contacts Facebook or other users on your behalf.
+              No. You can dim, collapse, ignore, or snooze comments locally without changing your Facebook friendships.
+              ThreadSense is built to quiet noise on your screen—not to force relationship decisions.
             </div>
           </details>
           <details class="faq-item">
-            <summary>Can it prove someone is a troll or fake account?</summary>
+            <summary>Does ThreadSense report or block people for me?</summary>
             <div class="faq-item__body">
-              No. Scores are pattern-based guesses and can be wrong—especially with sarcasm, quotes, or jokes. Use them as one input among many.
+              No. It only changes how comments look on your screen (badges, dim, collapse) and never contacts Facebook
+              or other users on your behalf.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Can it prove someone is fake or trolling?</summary>
+            <div class="faq-item__body">
+              No. Scores are pattern-based guesses and can be wrong—especially with sarcasm, quotes, or jokes. Use them
+              as one input among many.
             </div>
           </details>
           <details class="faq-item">
             <summary>What data leaves my computer?</summary>
             <div class="faq-item__body">
-              By default, none of your feed content is sent to ThreadSense servers. Optional phrase-list updates fetch only public word lists. See the <a href="privacy.html">privacy policy</a> for OCR and future license checks.
+              By default, none of your feed content is sent to ThreadSense servers. Optional phrase-list updates fetch
+              only public word lists. See the <a href="privacy.html">privacy policy</a> for OCR and future license checks.
             </div>
           </details>
           <details class="faq-item">
@@ -297,12 +350,14 @@
         <div class="cta-panel">
           <h2>Ready for calmer scrolling?</h2>
           <p>
-            Install ThreadSense for Facebook, skim the user guide, and tune sensitivity to your feed. When in doubt, click a badge and read why it fired.
+            Install ThreadSense for Facebook and make your feed easier to handle. Quiet the noise, keep your
+            relationships intact, and browse with more peace of mind—without giving up control over what you see.
           </p>
           <div class="cta-panel__actions">
             <a class="ts-btn ts-btn--primary" href="https://chromewebstore.google.com/search/ThreadSense%20Facebook" target="_blank" rel="noopener noreferrer">Find on Chrome Web Store</a>
-            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Installation &amp; settings guide</a>
+            <a class="ts-btn ts-btn--ghost" href="user-guide.html">Installation &amp; Settings Guide</a>
           </div>
+          <p class="cta-panel__tagline">Less noise. Less toxicity. More control.</p>
         </div>
       </div>
     </section>
@@ -316,14 +371,15 @@
             <img src="assets/icons/icon32.png" alt="" width="28" height="28">
             ThreadSense
           </a>
-          <p style="margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--ts-muted); max-width: 16rem;">
-            Local heuristic signals for Facebook desktop. Not affiliated with Meta.
+          <p style="margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--ts-muted); max-width: 18rem;">
+            Less noise. Less toxicity. More control. Local heuristic signals for Facebook desktop—not affiliated with Meta.
           </p>
         </div>
         <div>
           <h4>Product</h4>
           <ul>
             <li><a href="#features">Features</a></li>
+            <li><a href="#why-threadsense">Why ThreadSense</a></li>
             <li><a href="#how-it-works">How it works</a></li>
             <li><a href="user-guide.html">User guide</a></li>
             <li><a href="#get-extension">Get extension</a></li>
